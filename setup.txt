@@ -1,0 +1,9 @@
+Added four ip addresses here: https://medium.com/@kimcodes/setting-up-a-web-page-with-github-pages-f77d45573ab2
+
+Changed CNAME to WWW
+
+Also need to add two other IP addresses? https://medium.com/@kimcodes/setting-up-a-web-page-with-github-pages-f77d45573ab2 These are listed at the API: https://api.github.com/meta (via https://help.github.com/articles/about-github-s-ip-addresses/)
+
+Online tool for dig: http://dig-nslookup.nmonitoring.com/dns-dig-nslookup.html
+
+MIght be useful https://ongspxm.github.io/blog/2016/08/github-custom-domain-godaddy/
