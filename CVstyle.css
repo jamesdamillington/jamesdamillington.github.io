@@ -1,4 +1,22 @@
 
+
+p
+{
+	text-align: left;
+	font-family: Helvetica, sans-serif;
+	margin : 5px;
+	line-height: 1.2;
+}
+
+li
+{
+	text-align: left;
+	font-family: Helvetica, sans-serif;
+	margin : 5px;
+	line-height: 1.2;
+}
+
+
 /*
 YELLOW-BLACK
 
@@ -33,8 +51,8 @@ body 	{
 
 /*
 BLACK-WHITE
-*/
 
+*/
 a {
 	color: #008080;
 	text-decoration: none;
@@ -56,13 +74,7 @@ body 	{
 	font-family: Helvetica, sans-serif;
 	}
 	
-p
-{
-	text-align: left;
-	font-family: Helvetica, sans-serif;
-	margin : 5px;
-	line-height: 1.2;
-}
+
 
 
  
