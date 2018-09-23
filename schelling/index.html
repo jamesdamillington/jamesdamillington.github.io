@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <!-- Site made with Mobirise Website Builder v4.8.1, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Schelling Model">
+  <meta name="keywords" content=
+  "agent-based modelling, schelling" />
+  <meta name="robots" content="all | index | follow" />
+  <meta name="author" content="James D.A. Millington" />
+  <meta http-equiv="Content-Language" content="en" />
+  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="CVstyle.css" type="text/css">
+  <title>schelling model</title>
+</head>
+<body>
+<h1>Does spatial segregation of ethnic groups in cities imply intolerant individuals?</h1>
+<p><br/>We will explore how we might use agent-based modelling to think about this question, following in the footsteps of <a href="https://en.wikipedia.org/wiki/Thomas_Schelling#Models_of_segregation" target="_blank">Thomas Schelling</a>.
+
+<br/><br/><br/><b>Step 1:</b> Let's think about a hypothetical city neighbourhood with households on a grid. How might we define 'happiness' of a household with reference to the similarity of its neighbours (i.e. its spatial context). 
+
+<br/><br/><b>1a</b> Download <a href="HappyUnhappy_v6.nlogo">this model code</a> to the N: drive [you may need to right-click and 'Save Link As'], open in NetLogo, and work your way through the Info tab. Make sure you understand how 'happiness' is defined. 
+
+<br/><br/><b>1b</b> To see how happiness is actually calculated by the model, go to the Code tab and find the <i>answer</i> procedure (all the code between 'to answer' and 'end').
+</p>
+<br/>
+<center><img src="HappySS.jpg" /></center>
+
+<p>
+<br/><b>Step 2: </b>Now that we understand how happiness is defined in this model, let's consider how we might make the model dynamic by allowing households to move location if they are 'unhappy'. Households move until they find a location where they are 'happy'. If all households can find a location at which they are happy, the simulation stops and we can assess segregation. 
+
+<br/><br/><b>2a</b> Download <a href="Segregation_shapes_v6.nlogo">this model code</a>, open in NetLogo, and read the 'What is it?' and 'How to use it' sections in the Info tab.
+
+<br/><br/><b>2b</b> Open the Code tab. You will see that we have more code in this model than the first. Look at how the <i>setup</i> procedure is similar (but slightly different) to the <i>setup</i> procedure in the first model. 
+</p>
+<br/>
+<center><img src="SchellingSS.jpg" /></center>
+<p>
+<br/><br/><b>2c</b> Go back to the Interface tab. Note how the 'Go' button has two arrows pointing to one another in the bottom left. This means all code in the procedure called by the button will be continuously repeated until the code tells it to stop. The 'Go' button calls the <i>go</i> procedure, which is the dynamic part of the model code - find the go procedure in the code.  
+
+<br/><br/><b>2d</b> The <i>go</i> procedure calls the <i>update-happiness</i> procedure - note how this is similar to the <i>answer</i> procedure in the first model. 
+
+<br/><br/><b>2e</b> Next in the <i>go</i> procedure, there's a check to see if all turtles are happy - if so, the model stops, otherwise the <i>move-unhappy-turtles</i> procedure is called. Find the <i>move-unhappy-turtles</i> procedure and check you understand what it does. 
+
+<br/><br/><b>2f</b> After the <i>move-unhappy-turtles</i> procedure, the timestep is increased by 1 and then the <i>go</i> procedure starts all over again from the <i>update-happiness</i> procedure. Each time the <i>go</i> procedure is repeated is known as an iteration
+</p>
+
+<p>
+<br/><b>Step 3:</b> 
+Experiment with the model. Work through the instructions in the 'Things to Try' section of the Info tab. Record your results  in an Excel spreadsheet. Setup your results table as shown in the image below - your results will be typed into the shaded (green) cells.  
+</p>
+
+<br/>
+<center><img src="seg_results_table.jpg" /></center>
+
+<p>
+<br/><b>Questions:</b>
+<ol>
+<li>For 2000 households but different values for %-SIMILAR-WANTED, how does the overall degree of segregation change? 
+</li><li>If each household wants at least 10% same-shape neighbors, what percentage (on average) do they end up with? What does this imply about drivers of segregation?
+</li><li>For different values of %-SIMILAR-WANTED, how many iterations does it take before everyone is happy?
+</li><li>Does the number of households in the space influence the patterns you found above? (e.g. repeat the experiment above of different %-SIMILAR-WANTED values but for a different number of households)
+</li></ol>
+</p>
+
+<p>
+<b>Online Resources</b>
+<ul>
+<li>NetLogo Home: <a href="http://ccl.northwestern.edu/netlogo/" target="_blank">http://ccl.northwestern.edu/netlogo/</a> 
+</li><li>NetLogo Modelling Commons: <a href="http://modelingcommons.org" target="_blank">http://modelingcommons.org</a>
+</li></ul>
+</p>
+
+<p>
+<b>Further Reading</b>
+<ul>
+<li>Grimm, V. and Railsback S.F. (2012) <i>Agent and Individual Based Modelling: A Practical Introduction.</i> Princeton NJ: Princeton University Press
+</li><li>O'Sullivan, D. and Perry, G.L.W. (2013) <i>Spatial Simulation: Exploring Pattern and Process.</i> Chichester, U.K.: Wiley-Blackwell.
+</li></ul>
+<br/>
+</p>
+  
+
+<hr></hr>
+<center>This material is licenced by <a href="https://www.landscapemodelling.net" target="_blank">James D.A. Millington</a> under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</a> licence.</center>
+
+
+</body>
+</html>
