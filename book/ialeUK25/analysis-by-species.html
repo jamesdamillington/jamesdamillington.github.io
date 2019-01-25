@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ialeUK 25 Years of Conferences</title>
-  <meta name="description" content="ialeUK 25 Years of Conferences">
+  <title>Chapter 5 Analysis by Species | ialeUK 25 Years of Conferences</title>
+  <meta name="description" content="Chapter 5 Analysis by Species | ialeUK 25 Years of Conferences">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="ialeUK 25 Years of Conferences" />
+  <meta property="og:title" content="Chapter 5 Analysis by Species | ialeUK 25 Years of Conferences" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="ialeUK 25 Years of Conferences" />
+  <meta name="twitter:title" content="Chapter 5 Analysis by Species | ialeUK 25 Years of Conferences" />
   
   
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
+<link rel="prev" href="analysis-by-landscape-type.html">
 
-<link rel="next" href="analysis-by-conference-year.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -160,24 +160,94 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">ialeUK 25 Years of Conferences</h1>
-<p class="author"><em>James Millington</em></p>
-<p class="date"><em>20 January 2019</em></p>
-</div>
-<div id="overview" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Overview</h1>
-<p>Insert preamble here.</p>
-<p>Use table of contents (e.g. in the panel on the left) to navigate the book.</p>
+<div id="analysis-by-species" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Analysis by Species</h1>
+<p>Bar charts to examine how contribution to conferences have changed over time.</p>
+<div id="total-conference-contributions-3" class="section level2">
+<h2><span class="header-section-number">5.1</span> Total Conference Contributions</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#spec(cpdata)</span>
 
+sppdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> SppType, <span class="dt">value =</span> count, Mammals<span class="op">:</span>Fish) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">SppType</span><span class="st">`</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise_all</span>(sum, <span class="dt">na.rm=</span>T) </code></pre></div>
+<p>Quick observations:</p>
+<ul>
+<li>Amphibians, Fish, Reptiles are little studied</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">AsppCounts &lt;-<span class="st"> </span>sppdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(SppType,Academic, Government,NGO,Business,Private) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Asum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>SppType, <span class="op">-</span>Asum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>Asum)  <span class="co">#calculate proportion</span>
+
+<span class="kw">ggplot</span>(AsppCounts, <span class="kw">aes</span>(<span class="dt">x=</span>SppType, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+</div>
+<div id="author-affiliation-2" class="section level2">
+<h2><span class="header-section-number">5.2</span> Author Affiliation</h2>
+<p>Quick observations:</p>
+<ul>
+<li>Businesses and private individuals study humans (proportional)</li>
+<li>By absolute numbers NGOs dominate study of birds</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(AsppCounts, <span class="kw">aes</span>(<span class="dt">x=</span>SppType, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(AsppCounts, <span class="kw">aes</span>(<span class="dt">x=</span>SppType, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-33-2.png" width="672" /></p>
+</div>
+<div id="landscape-type-2" class="section level2">
+<h2><span class="header-section-number">5.3</span> Landscape Type</h2>
+<div id="using-all-landscape-types-1" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> Using all landscape types</h3>
+<p>Quick observations:</p>
+<ul>
+<li>Human studies are most evenly distributed across landscape types</li>
+<li>Unsurprisingly, fish are studies in riverscapes and seascapes</li>
+<li>Birds, plants and inverts studies dominated by Lowland rural studies</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lspsppCounts &lt;-<span class="st"> </span>sppdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(SppType,<span class="st">`</span><span class="dt">Upland rural</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Lowland rural</span><span class="st">`</span>, Urban,    Riverscape, Seascape, <span class="st">`</span><span class="dt">Undefined LspType</span><span class="st">`</span>,Other) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Asum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">8</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>SppType, <span class="op">-</span>Asum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>Asum)  <span class="co">#calculate proportion</span>
+
+<span class="kw">ggplot</span>(lspsppCounts, <span class="kw">aes</span>(<span class="dt">x=</span>SppType, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspsppCounts, <span class="kw">aes</span>(<span class="dt">x=</span>SppType, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-34-2.png" width="672" /></p>
+</div>
+<div id="without-undefined-lsptype-and-other-landscape-types-1" class="section level3">
+<h3><span class="header-section-number">5.3.2</span> Without ‘Undefined LspType’ and ‘Other’ landscape types</h3>
+<p>Quick observations:</p>
+<ul>
+<li>Government has greatest proportion of Upland Rural</li>
+<li>Business has greatest Urban proportion and smallest Lowland Rural proportion</li>
+<li>Academic dominates total number of all landscape types (with possible exception of Upland Rural)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lspsppCounts &lt;-<span class="st"> </span>sppdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(SppType,<span class="st">`</span><span class="dt">Upland rural</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Lowland rural</span><span class="st">`</span>, Urban,    Riverscape, Seascape) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Asum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>SppType, <span class="op">-</span>Asum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>Asum)  <span class="co">#calculate proportion</span>
+
+<span class="kw">ggplot</span>(lspsppCounts, <span class="kw">aes</span>(<span class="dt">x=</span>SppType, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspsppCounts, <span class="kw">aes</span>(<span class="dt">x=</span>SppType, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-35-2.png" width="672" /></p>
+
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="analysis-by-landscape-type.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="analysis-by-conference-year.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
