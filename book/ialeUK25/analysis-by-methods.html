@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ialeUK 25 Years of Conferences</title>
-  <meta name="description" content="ialeUK 25 Years of Conferences">
+  <title>Chapter 6 Analysis by Methods | ialeUK 25 Years of Conferences</title>
+  <meta name="description" content="Chapter 6 Analysis by Methods | ialeUK 25 Years of Conferences">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="ialeUK 25 Years of Conferences" />
+  <meta property="og:title" content="Chapter 6 Analysis by Methods | ialeUK 25 Years of Conferences" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="ialeUK 25 Years of Conferences" />
+  <meta name="twitter:title" content="Chapter 6 Analysis by Methods | ialeUK 25 Years of Conferences" />
   
   
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
+<link rel="prev" href="analysis-by-organism.html">
 
-<link rel="next" href="analysis-by-conference-year.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -176,57 +176,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">ialeUK 25 Years of Conferences</h1>
-<p class="author"><em>James Millington</em></p>
-<p class="date"><em>31 January 2019</em></p>
-</div>
-<div id="overview-and-summary" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Overview and Summary</h1>
-<p>This is a collection of analyses of conference abstracts from 25 years of ialeUK conferences. Analysis is ongoing.</p>
-<p>A summary of initial observations is shown below.</p>
-<p>Use the table of contents (e.g. in the panel on the left) to navigate to detailed analysis (currently line and bar charts).</p>
-<p><em>Suggestions for additional analysis</em> - For some themes, categories for ‘undefined’ abstracts have sometimes been removed from analysis; need to provide information on how removing these ‘undefined’ studies includences the number of abstracts in the analysis. - Other suggestions for quant analyses welcome</p>
-<p>[add links below later to specific sections]</p>
-<div id="summary-abstracts-though-time" class="section level2">
-<h2><span class="header-section-number">1.1</span> Summary: Abstracts though time</h2>
-<ul>
-<li>General increase through time to early 2000s then drop but steady through 2010s</li>
-<li>NGO attendance has replaced declines in Government? (could check sum of Gov + NGO through time)</li>
-<li>Empirical studies have decreased through time while GIS and qualitative have increased through time</li>
-<li>Global studies only appear from 2014 onwards</li>
-</ul>
-</div>
-<div id="summary-author-affiliation" class="section level2">
-<h2><span class="header-section-number">1.2</span> Summary: Author affiliation</h2>
-<ul>
-<li>Academic contributors dominate, followed by Government (but as shown above, Government contributions have decreased recently, replaced by NGOs)</li>
-<li>Business contributors have noticeably lower proportion of empirical studies (expensive?) than other author types, substituted by GIS and qualitative</li>
-<li>Government and NGOs have greater proportion of Management and Conservation than Academic</li>
-</ul>
-</div>
-<div id="summary-landscape-type" class="section level2">
-<h2><span class="header-section-number">1.3</span> Summary: Landscape Type</h2>
-<ul>
-<li>Lowland rural landscape studies dominate, followed by ‘undefined’ and Upland rural</li>
-<li>Seascape studies have largest proportion of qualitative methods</li>
-<li>Urban landscape studies are dominated by Local scale analysis</li>
-<li>Upland rural have larger proportion of national studies than Lowland rural</li>
-<li>Unsurprisingly, Green Infrastructure has greatest proportion in Urban landscapes and catchment-based approaches in Riverscapes</li>
-<li>Little study of cultural landscapes in Urban areas</li>
-</ul>
-</div>
-<div id="summary-organism" class="section level2">
-<h2><span class="header-section-number">1.4</span> Summary: Organism</h2>
-<ul>
-<li>Amphibians, Fish, Reptiles are little studied</li>
-<li>Plants have greatest proportions of longer studies (Decadal and Centuries) while Inverts have greatest proportion of shorter studies (Annual and Monthly) - makes sense given rates of change and life history of these organisms?</li>
-<li>Businesses and private individuals largely study humans (based on proportional data)</li>
-<li>By absolute numbers NGOs dominate study of birds</li>
-<li>Humans dominated by qualitative studies, with few empirical (i.e. few interviews, questionnaires?)</li>
-<li>Possibly surprisingly, plants do not have many RS studies</li>
-<li>Inverts dominated by ‘mini’ spatial extent studies</li>
-</ul>
+<div id="analysis-by-methods" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Analysis by Methods</h1>
+<p>Bar charts to examine how contributions to conferences vary by methods</p>
+<div id="total-conference-contributions-4" class="section level2">
+<h2><span class="header-section-number">6.1</span> Total Conference Contributions</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#spec(cpdata)</span>
+
+metdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Method, <span class="dt">value =</span> count, Empirical<span class="op">:</span><span class="st">`</span><span class="dt">Remote sensing</span><span class="st">`</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Method</span><span class="st">`</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise_all</span>(sum, <span class="dt">na.rm=</span>T) </code></pre></div>
 
 </div>
 </div>
@@ -235,8 +197,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
+<a href="analysis-by-organism.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="analysis-by-conference-year.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
