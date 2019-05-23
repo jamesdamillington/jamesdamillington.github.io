@@ -105,6 +105,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#summary-author-affiliation"><i class="fa fa-check"></i><b>1.2</b> Summary: Author affiliation</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#summary-landscape-type"><i class="fa fa-check"></i><b>1.3</b> Summary: Landscape Type</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#summary-organism"><i class="fa fa-check"></i><b>1.4</b> Summary: Organism</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#summary-methods"><i class="fa fa-check"></i><b>1.5</b> Summary: Methods</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="analysis-by-conference-year.html"><a href="analysis-by-conference-year.html"><i class="fa fa-check"></i><b>2</b> Analysis by Conference Year</a><ul>
 <li class="chapter" data-level="2.1" data-path="analysis-by-conference-year.html"><a href="analysis-by-conference-year.html#total-conference-contributions"><i class="fa fa-check"></i><b>2.1</b> Total Conference Contributions</a></li>
@@ -158,6 +159,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html"><i class="fa fa-check"></i><b>6</b> Analysis by Methods</a><ul>
 <li class="chapter" data-level="6.1" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#total-conference-contributions-4"><i class="fa fa-check"></i><b>6.1</b> Total Conference Contributions</a></li>
+<li class="chapter" data-level="6.2" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#author-affiliation-3"><i class="fa fa-check"></i><b>6.2</b> Author Affiliation</a></li>
+<li class="chapter" data-level="6.3" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#landscape-type-3"><i class="fa fa-check"></i><b>6.3</b> Landscape Type</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#using-all-landscape-types-2"><i class="fa fa-check"></i><b>6.3.1</b> Using all landscape types</a></li>
+<li class="chapter" data-level="6.3.2" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#without-undefined-lsptype-and-other-landscape-types-2"><i class="fa fa-check"></i><b>6.3.2</b> Without ‘Undefined LspType’ and ‘Other’ landscape types</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#species-2"><i class="fa fa-check"></i><b>6.4</b> Species</a></li>
+<li class="chapter" data-level="6.5" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#spatial-extent-4"><i class="fa fa-check"></i><b>6.5</b> Spatial Extent</a></li>
+<li class="chapter" data-level="6.6" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#temporal-extent-4"><i class="fa fa-check"></i><b>6.6</b> Temporal Extent</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#with-undefined-1"><i class="fa fa-check"></i><b>6.6.1</b> With undefined</a></li>
+<li class="chapter" data-level="6.6.2" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#without-undefined-1"><i class="fa fa-check"></i><b>6.6.2</b> Without Undefined</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#concepts-4"><i class="fa fa-check"></i><b>6.7</b> Concepts</a></li>
+<li class="chapter" data-level="6.8" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#other-concepts-4"><i class="fa fa-check"></i><b>6.8</b> Other Concepts</a></li>
 </ul></li>
 </ul>
 
@@ -179,8 +193,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="analysis-by-methods" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Analysis by Methods</h1>
 <p>Bar charts to examine how contributions to conferences vary by methods</p>
-<div id="total-conference-contributions-4" class="section level2">
-<h2><span class="header-section-number">6.1</span> Total Conference Contributions</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#spec(cpdata)</span>
 
 metdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span>
@@ -189,6 +201,166 @@ metdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Method</span><span class="st">`</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise_all</span>(sum, <span class="dt">na.rm=</span>T) </code></pre></div>
+<div id="total-conference-contributions-4" class="section level2">
+<h2><span class="header-section-number">6.1</span> Total Conference Contributions</h2>
+<p>Quick observations:</p>
+<ul>
+<li>Empirical and Quantitative studies dominate</li>
+<li>little remote sensing</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">AmetCounts &lt;-<span class="st"> </span>metdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Method,Academic, Government,NGO,Business,Private) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Msum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Method, <span class="op">-</span>Msum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>Msum)  <span class="co">#calculate proportion</span>
+
+<span class="kw">ggplot</span>(AmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+</div>
+<div id="author-affiliation-3" class="section level2">
+<h2><span class="header-section-number">6.2</span> Author Affiliation</h2>
+<p>Quick observations:</p>
+<ul>
+<li>pretty consistent distribution of methods across affiliations</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(AmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(AmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-44-2.png" width="672" /></p>
+</div>
+<div id="landscape-type-3" class="section level2">
+<h2><span class="header-section-number">6.3</span> Landscape Type</h2>
+<div id="using-all-landscape-types-2" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Using all landscape types</h3>
+<p>Quick observations:</p>
+<ul>
+<li>Qualitative studies are most evenly distributed across landscape types</li>
+<li>Theoretical studies most commonly do not define a landscape type</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lspmetCounts &lt;-<span class="st"> </span>metdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Method,<span class="st">`</span><span class="dt">Upland rural</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Lowland rural</span><span class="st">`</span>, Urban, Riverscape, Seascape, <span class="st">`</span><span class="dt">Undefined LspType</span><span class="st">`</span>,Other) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Msum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">8</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Method, <span class="op">-</span>Msum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>Msum)  <span class="co">#calculate proportion</span>
+
+<span class="kw">ggplot</span>(lspmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-45-2.png" width="672" /></p>
+</div>
+<div id="without-undefined-lsptype-and-other-landscape-types-2" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Without ‘Undefined LspType’ and ‘Other’ landscape types</h3>
+<p>Quick observations:</p>
+<ul>
+<li>This is generally less informative than with ‘un-defined’ (in contrast to other classifications)</li>
+<li>Does highlight that qualitative studies are most prevalent in seascape studies</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lspmetCounts &lt;-<span class="st"> </span>metdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Method,<span class="st">`</span><span class="dt">Upland rural</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Lowland rural</span><span class="st">`</span>, Urban, Riverscape, Seascape) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Msum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Method, <span class="op">-</span>Msum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>Msum)  <span class="co">#calculate proportion</span>
+
+<span class="kw">ggplot</span>(lspmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-46-2.png" width="672" /></p>
+</div>
+</div>
+<div id="species-2" class="section level2">
+<h2><span class="header-section-number">6.4</span> Species</h2>
+<p>Quick observations</p>
+<ul>
+<li>Qualitative studies most commonly study humans</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">speciesmetCounts &lt;-<span class="st"> </span>metdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Method,Mammals, Humans, Birds, Reptiles, Inverts, Plants, Amphibians, Fish, <span class="st">`</span><span class="dt">Generic Habitat</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Woodland Forests</span><span class="st">`</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Msum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Method, <span class="op">-</span>Msum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>Msum)  <span class="co">#calculate proportion</span>
+
+<span class="kw">ggplot</span>(speciesmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(speciesmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-47-2.png" width="672" /></p>
+</div>
+<div id="spatial-extent-4" class="section level2">
+<h2><span class="header-section-number">6.5</span> Spatial Extent</h2>
+<p>Quick observations:</p>
+<ul>
+<li>Theoretical studies have largely undefined extent</li>
+<li>No micro qualitative studies</li>
+<li>very few global empirical studies, and no GIS global studies</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">extentmetCounts &lt;-<span class="st"> </span>metdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Method, Micro, Mini, Local, Regional, National, Continental, Global,<span class="st">`</span><span class="dt">Undefined Extent</span><span class="st">`</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Msum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">9</span>])) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Method, <span class="op">-</span>Msum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>Msum) 
+
+<span class="kw">ggplot</span>(extentmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(extentmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-48-2.png" width="672" /></p>
+</div>
+<div id="temporal-extent-4" class="section level2">
+<h2><span class="header-section-number">6.6</span> Temporal Extent</h2>
+<div id="with-undefined-1" class="section level3">
+<h3><span class="header-section-number">6.6.1</span> With undefined</h3>
+<p>Quick observations:</p>
+<ul>
+<li>Difficult to see much; examine without ‘undefined’ <img src="bookdown-start_files/figure-html/unnamed-chunk-49-1.png" width="672" /><img src="bookdown-start_files/figure-html/unnamed-chunk-49-2.png" width="672" /></li>
+</ul>
+</div>
+<div id="without-undefined-1" class="section level3">
+<h3><span class="header-section-number">6.6.2</span> Without Undefined</h3>
+<ul>
+<li>Theoretical studies are years or longer</li>
+<li>Actually, vast majority of studies are months or longer (should see this when splitting by temporal extent)</li>
+</ul>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-50-1.png" width="672" /><img src="bookdown-start_files/figure-html/unnamed-chunk-50-2.png" width="672" /></p>
+</div>
+</div>
+<div id="concepts-4" class="section level2">
+<h2><span class="header-section-number">6.7</span> Concepts</h2>
+<p>Quick observations:</p>
+<ul>
+<li>Surprisingly few theoretical studies of scale and scaling?</li>
+<li>Relatively large number of qualitative studies are about landscape sustainability</li>
+<li>Relatively few empirical studies of ecosystem services</li>
+<li>GIS studies have largest proportion of spatial analysis and modellng (unsurprisingly)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">conceptmetCounts &lt;-<span class="st"> </span>metdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Method, <span class="st">`</span><span class="dt">PPS of landscapes</span><span class="st">`</span>,
+<span class="st">`</span><span class="dt">Connectivity and fragmentation</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Scale and scaling</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Spatial analysis and modeling</span><span class="st">`</span>,LUCC,<span class="st">`</span><span class="dt">History and legacy</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Climate change interactions</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Ecosystem services</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Landscape sustainability</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Accuracy and uncertainty</span><span class="st">`</span>
+) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Msum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>])) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Method, <span class="op">-</span>Msum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>Msum) 
+
+<span class="kw">ggplot</span>(conceptmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(conceptmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-51-2.png" width="672" /></p>
+</div>
+<div id="other-concepts-4" class="section level2">
+<h2><span class="header-section-number">6.8</span> Other Concepts</h2>
+<p>Quick observations:</p>
+<ul>
+<li>Qualitative studies have relatively low proportion of biodiversity studies, but have relatively large proportion of socio-economic and cultural</li>
+<li>Theoretical studies have similar distribution to qualitative slightly more biodiversity at expense of cultural</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">othCmetCounts &lt;-<span class="st"> </span>metdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Method, <span class="st">`</span><span class="dt">Green Infrastructure</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Planning and Architecture</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Management and Conservation</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Cultural Landscapes</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Socio-economic Dimensions</span><span class="st">`</span>,Biodiversity,<span class="st">`</span><span class="dt">Landscape Assessment</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Catchment Based Approach</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Invasives Pests Diseases</span><span class="st">`</span>
+) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Msum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>])) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Method, <span class="op">-</span>Msum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>Msum) 
+
+<span class="kw">ggplot</span>(othCmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(othCmetCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-52-2.png" width="672" /></p>
 
 </div>
 </div>

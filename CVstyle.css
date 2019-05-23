@@ -20,12 +20,17 @@ li
 /*
 YELLOW-BLACK
 
+color: #F7ED4A;
+
+
 a {
 color: #F7ED4A;
 text-decoration: none;
 }
 
-
+strong {
+     color: #D9B44A;;
+}
 
 
 hr {
@@ -51,8 +56,8 @@ body 	{
 
 /*
 BLACK-WHITE
-
 */
+
 a {
 	color: #008080;
 	text-decoration: none;
