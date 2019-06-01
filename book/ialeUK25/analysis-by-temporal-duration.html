@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 4 Analysis by Landscape Type | ialeUK 25 Years of Conferences</title>
-  <meta name="description" content="Chapter 4 Analysis by Landscape Type | ialeUK 25 Years of Conferences">
+  <title>Chapter 8 Analysis by Temporal Duration | ialeUK 25 Years of Conferences</title>
+  <meta name="description" content="Chapter 8 Analysis by Temporal Duration | ialeUK 25 Years of Conferences">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 4 Analysis by Landscape Type | ialeUK 25 Years of Conferences" />
+  <meta property="og:title" content="Chapter 8 Analysis by Temporal Duration | ialeUK 25 Years of Conferences" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Analysis by Landscape Type | ialeUK 25 Years of Conferences" />
+  <meta name="twitter:title" content="Chapter 8 Analysis by Temporal Duration | ialeUK 25 Years of Conferences" />
   
   
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="analysis-by-author-affiliation.html">
-<link rel="next" href="analysis-by-organism.html">
+<link rel="prev" href="analysis-by-spatial-extent.html">
+<link rel="next" href="analysis-by-concept.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -256,260 +256,212 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="analysis-by-landscape-type" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Analysis by Landscape Type</h1>
-<p>Bar charts to examine how contribution to conferences have changed over time.</p>
-<div id="total-conference-contributions-2" class="section level2">
-<h2><span class="header-section-number">4.1</span> Total Conference Contributions</h2>
+<div id="analysis-by-temporal-duration" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Analysis by Temporal Duration</h1>
+<p>Bar charts to examine how contributions to conferences vary by methods</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#spec(cpdata)</span>
 
-lspdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span>
+tempdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> LspType, <span class="dt">value =</span> count, <span class="st">`</span><span class="dt">Upland rural</span><span class="st">`</span><span class="op">:</span>Other) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Temporal, <span class="dt">value =</span> count, Hours<span class="op">:</span><span class="st">`</span><span class="dt">Undefined Temporal</span><span class="st">`</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Temporal</span><span class="st">`</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise_all</span>(sum, <span class="dt">na.rm=</span>T)
+
+utempdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Temporal, <span class="dt">value =</span> count, Hours<span class="op">:</span>Longer) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Temporal</span><span class="st">`</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise_all</span>(sum, <span class="dt">na.rm=</span>T) </code></pre></div>
+<div id="total-conference-contributions-6" class="section level2">
+<h2><span class="header-section-number">8.1</span> Total Conference Contributions</h2>
 <p>Quick observations:</p>
 <ul>
-<li>Lowland rural dominate, followed by ‘undefined’ and Upland rural</li>
+<li>Majority of studies do not define or report their temporal duration (65%)</li>
+<li>Those that do generally have durations longer than Years (~89%)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(LspType, count) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count<span class="op">/</span><span class="kw">sum</span>(count)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> <span class="kw">round</span>(prop,<span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">kable_styling</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</code></pre></div>
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-LspType
-</th>
-<th style="text-align:right;">
-count
-</th>
-<th style="text-align:right;">
-prop
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Lowland rural
-</td>
-<td style="text-align:right;">
-355
-</td>
-<td style="text-align:right;">
-0.408
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Other
-</td>
-<td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-0.026
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Riverscape
-</td>
-<td style="text-align:right;">
-95
-</td>
-<td style="text-align:right;">
-0.109
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Seascape
-</td>
-<td style="text-align:right;">
-67
-</td>
-<td style="text-align:right;">
-0.077
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Undefined LspType
-</td>
-<td style="text-align:right;">
-134
-</td>
-<td style="text-align:right;">
-0.154
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Upland rural
-</td>
-<td style="text-align:right;">
-107
-</td>
-<td style="text-align:right;">
-0.123
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Urban
-</td>
-<td style="text-align:right;">
-90
-</td>
-<td style="text-align:right;">
-0.103
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspdata, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(tempdata <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">select</span>(Temporal, count) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count<span class="op">/</span><span class="kw">sum</span>(count)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">prop =</span> <span class="kw">round</span>(prop,<span class="dv">3</span>)))</code></pre></div>
+<pre><code>## # A tibble: 8 x 3
+##   Temporal           count  prop
+##   &lt;chr&gt;              &lt;int&gt; &lt;dbl&gt;
+## 1 Centuries             25 0.034
+## 2 Days                   1 0.001
+## 3 Decades              122 0.166
+## 4 Longer                 9 0.012
+## 5 Months                26 0.035
+## 6 Undefined Temporal   477 0.648
+## 7 Weeks                  3 0.004
+## 8 Years                 73 0.099</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(tempdata, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span><span class="kw">max</span>(count), <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(count),<span class="dv">1</span>), <span class="st">&quot;%&quot;</span>), <span class="dt">vjust=</span><span class="op">-</span><span class="fl">0.25</span>))</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span><span class="kw">max</span>(count), <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(count),<span class="dv">1</span>), <span class="st">&quot;%&quot;</span>), <span class="dt">vjust=</span><span class="op">-</span><span class="fl">0.5</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;All Data&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(utempdata <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">select</span>(Temporal, count) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count<span class="op">/</span><span class="kw">sum</span>(count)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">prop =</span> <span class="kw">round</span>(prop,<span class="dv">3</span>)))</code></pre></div>
+<pre><code>## # A tibble: 7 x 3
+##   Temporal  count  prop
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt;
+## 1 Centuries    25 0.097
+## 2 Days          1 0.004
+## 3 Decades     122 0.471
+## 4 Longer        9 0.035
+## 5 Months       26 0.1  
+## 6 Weeks         3 0.012
+## 7 Years        73 0.282</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(utempdata, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span><span class="kw">max</span>(count), <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(count),<span class="dv">1</span>), <span class="st">&quot;%&quot;</span>), <span class="dt">vjust=</span><span class="op">-</span><span class="fl">0.5</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Excluding Undefined&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-65-2.png" width="672" /></p>
 </div>
-<div id="author-affiliation-1" class="section level2">
-<h2><span class="header-section-number">4.2</span> Author Affiliation</h2>
+<div id="author-affiliation-5" class="section level2">
+<h2><span class="header-section-number">8.2</span> Author Affiliation</h2>
 <p>Quick observations:</p>
-<ul>
-<li>Academic are majority of all landscape types, with possible exception of Upland rural (Government?)</li>
-<li></li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">authorCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(LspType,Academic, Government,NGO,Business,Private) <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">authCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Temporal,Academic, Government,NGO,Business,Private) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) <span class="co">#calculate proportion </span>
+
+authCountsW &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Temporal,Academic, Government,NGO,Business,Private) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate_if</span>(is.numeric, <span class="kw">funs</span>(<span class="dt">prop =</span> . <span class="op">/</span><span class="st"> </span>sum)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="dv">8</span><span class="op">:</span><span class="dv">12</span>, round, <span class="dv">3</span>)
+
+<span class="kw">print</span>(authCountsW)</code></pre></div>
+<pre><code>## # A tibble: 8 x 13
+##   Temporal Academic Government   NGO Business Private   sum Academic_prop
+##   &lt;chr&gt;       &lt;int&gt;      &lt;int&gt; &lt;int&gt;    &lt;int&gt;   &lt;int&gt; &lt;dbl&gt;         &lt;dbl&gt;
+## 1 Centuri~       18          7     1        0       2    28         0.643
+## 2 Days            0          1     0        0       0     1         0    
+## 3 Decades        81         35    16        4       3   139         0.583
+## 4 Longer          8          1     0        0       0     9         0.889
+## 5 Months         20          2     3        2       0    27         0.741
+## 6 Undefin~      292        156    68       29      12   557         0.524
+## 7 Weeks           3          0     0        0       0     3         1    
+## 8 Years          52         22     9        4       0    87         0.598
+## # ... with 5 more variables: Government_prop &lt;dbl&gt;, NGO_prop &lt;dbl&gt;,
+## #   Business_prop &lt;dbl&gt;, Private_prop &lt;dbl&gt;, sum_prop &lt;dbl&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(authCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(authCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-66-2.png" width="672" /></p>
+</div>
+<div id="landscape-type-5" class="section level2">
+<h2><span class="header-section-number">8.3</span> Landscape Type</h2>
+<div id="using-all-landscape-types-4" class="section level3">
+<h3><span class="header-section-number">8.3.1</span> Using all landscape types</h3>
+<p>Quick observations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lspCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Temporal,<span class="st">`</span><span class="dt">Upland rural</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Lowland rural</span><span class="st">`</span>, Urban,   Riverscape, Seascape, <span class="st">`</span><span class="dt">Undefined LspType</span><span class="st">`</span>,Other) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">8</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
 
-<span class="kw">ggplot</span>(authorCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(authorCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-24-2.png" width="672" /></p>
+<span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-67-2.png" width="672" /></p>
 </div>
-<div id="species-1" class="section level2">
-<h2><span class="header-section-number">4.3</span> Species</h2>
+<div id="without-undefined-lsptype-and-other-landscape-types-4" class="section level3">
+<h3><span class="header-section-number">8.3.2</span> Without ‘Undefined LspType’ and ‘Other’ landscape types</h3>
+<p>Quick observations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lspCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Temporal,<span class="st">`</span><span class="dt">Upland rural</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Lowland rural</span><span class="st">`</span>, Urban,   Riverscape, Seascape) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
+
+<span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<pre><code>## Warning: Removed 5 rows containing missing values (position_stack).</code></pre>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-68-2.png" width="672" /></p>
+</div>
+</div>
+<div id="species-4" class="section level2">
+<h2><span class="header-section-number">8.4</span> Species</h2>
 <p>Quick observations</p>
-<ul>
-<li>Animal types quite evenly distributed across Lowland rural</li>
-<li>Humans are large contributor to seascape studies (possibly by absolute number as well as relative)</li>
-<li>Generic habitat is large contributor across all landscape types</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sppCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(LspType,Mammals, Humans, Birds, Reptiles, Inverts, Plants, Amphibians, Fish, <span class="st">`</span><span class="dt">Generic Habitat</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Woodland Forests</span><span class="st">`</span>) <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">speciesCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Temporal, Mammals, Humans, Birds, Reptiles, Inverts, Plants, Amphibians, Fish, <span class="st">`</span><span class="dt">Generic Habitat</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Woodland Forests</span><span class="st">`</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
 
-<span class="kw">ggplot</span>(sppCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(sppCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
+<span class="kw">ggplot</span>(speciesCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(speciesCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<pre><code>## Warning: Removed 10 rows containing missing values (position_stack).</code></pre>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-69-2.png" width="672" /></p>
 </div>
-<div id="methods-2" class="section level2">
-<h2><span class="header-section-number">4.4</span> Methods</h2>
-<p>Quick observations</p>
-<ul>
-<li>‘Undefined landscape’ studies are largely theoretical</li>
-<li>Lowland rural largely studies using empirical and quantitative methods</li>
-<li>Seascape studies have largest proportion of qualitative methods</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">methodsCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(LspType,Empirical, Theoretical, Qualitative, Quantitative, GIS, <span class="st">`</span><span class="dt">Remote sensing</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">7</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
+<div id="methods-5" class="section level2">
+<h2><span class="header-section-number">8.5</span> Methods</h2>
+<p>Quick observations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">methodsCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Temporal, Empirical, Theoretical, Qualitative, Quantitative, GIS, <span class="st">`</span><span class="dt">Remote sensing</span><span class="st">`</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">7</span>])) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) 
 
-<span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
+<span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<pre><code>## Warning: Removed 6 rows containing missing values (position_stack).</code></pre>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-70-2.png" width="672" /></p>
 </div>
-<div id="spatial-extent-2" class="section level2">
-<h2><span class="header-section-number">4.5</span> Spatial Extent</h2>
-<p>Quick observations</p>
-<ul>
-<li>Urban landscape studies are dominated by Local scale analysis</li>
-<li>Upland rural have larger proportion of national studies than Lowland rural</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spatialCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(LspType,Micro, Mini, Local, Regional, National, Continental, Global,<span class="st">`</span><span class="dt">Undefined Extent</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">9</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
+<div id="spatial-extent-5" class="section level2">
+<h2><span class="header-section-number">8.6</span> Spatial Extent</h2>
+<p>Quick observations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">extentCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Temporal, Micro, Mini, Local, Regional, National, Continental, Global,<span class="st">`</span><span class="dt">Undefined Extent</span><span class="st">`</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">9</span>])) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) 
 
-<span class="kw">ggplot</span>(spatialCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(spatialCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
+<span class="kw">ggplot</span>(extentCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(extentCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-71-2.png" width="672" /></p>
 </div>
-<div id="temporal-extent-2" class="section level2">
-<h2><span class="header-section-number">4.6</span> Temporal Extent</h2>
-<p>Quick observations</p>
-<ul>
-<li>Upland have greatest proportion of Decadal studies</li>
-<li>Urban have greatest proportion of Monthly studies</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temporalCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(LspType,Hours, Days, Weeks, Months, Years, Decades, Centuries, Longer, <span class="st">`</span><span class="dt">Undefined Temporal</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
+<div id="concepts-6" class="section level2">
+<h2><span class="header-section-number">8.7</span> Concepts</h2>
+<p>Quick observations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">conceptCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Temporal, <span class="st">`</span><span class="dt">PPS of landscapes</span><span class="st">`</span>,
+<span class="st">`</span><span class="dt">Connectivity and fragmentation</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Scale and scaling</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Spatial analysis and modeling</span><span class="st">`</span>,LUCC,<span class="st">`</span><span class="dt">History and legacy</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Climate change interactions</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Ecosystem services</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Landscape sustainability</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Accuracy and uncertainty</span><span class="st">`</span>
+) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>])) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) 
 
-<span class="kw">ggplot</span>(temporalCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(temporalCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-28-2.png" width="672" /></p>
+<span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-72-2.png" width="672" /></p>
 </div>
-<div id="concepts-2" class="section level2">
-<h2><span class="header-section-number">4.7</span> Concepts</h2>
-<p>Quick observations</p>
-<ul>
-<li>Upland have greatest proportion of LUCC studies</li>
-<li>Seascape have greatest proportion of climate change studies</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">conceptCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>,<span class="st">`</span><span class="dt">PPS of landscapes</span><span class="st">`</span>,
-<span class="st">`</span><span class="dt">Connectivity and fragmentation</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Scale and scaling</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Spatial analysis and modeling</span><span class="st">`</span>,LUCC,<span class="st">`</span><span class="dt">History and legacy</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Climate change interactions</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Ecosystem services</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Landscape sustainability</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Accuracy and uncertainty</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
+<div id="other-concepts-6" class="section level2">
+<h2><span class="header-section-number">8.8</span> Other Concepts</h2>
+<p>Quick observations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">otherCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Temporal, <span class="st">`</span><span class="dt">Green Infrastructure</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Planning and Architecture</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Management and Conservation</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Cultural Landscapes</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Socio-economic Dimensions</span><span class="st">`</span>,Biodiversity,<span class="st">`</span><span class="dt">Landscape Assessment</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Catchment Based Approach</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Invasives Pests Diseases</span><span class="st">`</span>
+) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>])) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) 
 
-<span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-29-2.png" width="672" /></p>
-</div>
-<div id="other-concepts-2" class="section level2">
-<h2><span class="header-section-number">4.8</span> Other Concepts</h2>
-<p>Quick observations</p>
-<ul>
-<li>Socio-economic dimensions are most widely examined in Urban landscapes and Seascapes</li>
-<li>Unsurprisingly, Green Infrastructure has greatest proportion in Urban landscapes and catchment-based approaches in Riverscapes</li>
-<li>Little study of cultural landscapes in Urban areas</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">othCCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Green Infrastructure</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Planning and Architecture</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Management and Conservation</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Cultural Landscapes</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Socio-economic Dimensions</span><span class="st">`</span>,Biodiversity,<span class="st">`</span><span class="dt">Landscape Assessment</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Catchment Based Approach</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Invasives Pests Diseases</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
-
-<span class="kw">ggplot</span>(othCCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(othCCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="bookdown-start_files/figure-html/unnamed-chunk-30-2.png" width="672" /></p>
+<span class="kw">ggplot</span>(otherCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(otherCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<pre><code>## Warning: Removed 9 rows containing missing values (position_stack).</code></pre>
+<p><img src="bookdown-start_files/figure-html/unnamed-chunk-73-2.png" width="672" /></p>
 
 </div>
 </div>
@@ -518,8 +470,8 @@ Urban
           </div>
         </div>
       </div>
-<a href="analysis-by-author-affiliation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="analysis-by-organism.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="analysis-by-spatial-extent.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis-by-concept.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
