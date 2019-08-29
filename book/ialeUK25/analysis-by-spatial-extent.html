@@ -25,7 +25,6 @@
 <meta name="author" content="James Millington">
 
 
-<meta name="date" content="2019-05-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -49,6 +48,353 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+<script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.js');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+    });
+  });
+
+}
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "hide");
+});
+</script>
 
 
 <style type="text/css">
@@ -89,6 +435,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -101,16 +448,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="./">ialeUK 25 Years of Conferences</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview and Summary</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#summary-abstracts-though-time"><i class="fa fa-check"></i><b>1.1</b> Summary: Abstracts though time</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#summary-author-affiliation"><i class="fa fa-check"></i><b>1.2</b> Summary: Author affiliation</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#summary-landscape-type"><i class="fa fa-check"></i><b>1.3</b> Summary: Landscape Type</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#summary-organism"><i class="fa fa-check"></i><b>1.4</b> Summary: Organism</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#summary-methods"><i class="fa fa-check"></i><b>1.5</b> Summary: Methods</a></li>
-<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#summary-spatial-extent"><i class="fa fa-check"></i><b>1.6</b> Summary: Spatial Extent</a></li>
-<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#summary-temporal-duration"><i class="fa fa-check"></i><b>1.7</b> Summary: Temporal Duration</a></li>
-<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#summary-concepts"><i class="fa fa-check"></i><b>1.8</b> Summary: Concepts</a></li>
-<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#summary-other-concepts"><i class="fa fa-check"></i><b>1.9</b> Summary: Other Concepts</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#my-section"><i class="fa fa-check"></i>Summary: Abstracts though time</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#summary-author-affiliation"><i class="fa fa-check"></i><b>1.1</b> Summary: Author affiliation</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#summary-landscape-type"><i class="fa fa-check"></i><b>1.2</b> Summary: Landscape Type</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#summary-organism"><i class="fa fa-check"></i><b>1.3</b> Summary: Organism</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#summary-methods"><i class="fa fa-check"></i><b>1.4</b> Summary: Methods</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#summary-spatial-extent"><i class="fa fa-check"></i><b>1.5</b> Summary: Spatial Extent</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#summary-temporal-duration"><i class="fa fa-check"></i><b>1.6</b> Summary: Temporal Duration</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#summary-concepts"><i class="fa fa-check"></i><b>1.7</b> Summary: Concepts</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#summary-other-concepts"><i class="fa fa-check"></i><b>1.8</b> Summary: Other Concepts</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="analysis-by-conference-year.html"><a href="analysis-by-conference-year.html"><i class="fa fa-check"></i><b>2</b> Analysis by Conference Year</a><ul>
 <li class="chapter" data-level="2.1" data-path="analysis-by-conference-year.html"><a href="analysis-by-conference-year.html#total-conference-contributions"><i class="fa fa-check"></i><b>2.1</b> Total Conference Contributions</a></li>
@@ -129,7 +479,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2.1" data-path="analysis-by-author-affiliation.html"><a href="analysis-by-author-affiliation.html#using-all-landscape-types"><i class="fa fa-check"></i><b>3.2.1</b> Using all landscape types</a></li>
 <li class="chapter" data-level="3.2.2" data-path="analysis-by-author-affiliation.html"><a href="analysis-by-author-affiliation.html#without-undefined-lsptype-and-other-landscape-types"><i class="fa fa-check"></i><b>3.2.2</b> Without ‘Undefined LspType’ and ‘Other’ landscape types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="analysis-by-author-affiliation.html"><a href="analysis-by-author-affiliation.html#species"><i class="fa fa-check"></i><b>3.3</b> Species</a></li>
+<li class="chapter" data-level="3.3" data-path="analysis-by-author-affiliation.html"><a href="analysis-by-author-affiliation.html#organism-1"><i class="fa fa-check"></i><b>3.3</b> Organism</a></li>
 <li class="chapter" data-level="3.4" data-path="analysis-by-author-affiliation.html"><a href="analysis-by-author-affiliation.html#methods-1"><i class="fa fa-check"></i><b>3.4</b> Methods</a></li>
 <li class="chapter" data-level="3.5" data-path="analysis-by-author-affiliation.html"><a href="analysis-by-author-affiliation.html#spatial-extent-1"><i class="fa fa-check"></i><b>3.5</b> Spatial Extent</a></li>
 <li class="chapter" data-level="3.6" data-path="analysis-by-author-affiliation.html"><a href="analysis-by-author-affiliation.html#temporal-extent-1"><i class="fa fa-check"></i><b>3.6</b> Temporal Extent</a></li>
@@ -139,7 +489,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4" data-path="analysis-by-landscape-type.html"><a href="analysis-by-landscape-type.html"><i class="fa fa-check"></i><b>4</b> Analysis by Landscape Type</a><ul>
 <li class="chapter" data-level="4.1" data-path="analysis-by-landscape-type.html"><a href="analysis-by-landscape-type.html#total-conference-contributions-2"><i class="fa fa-check"></i><b>4.1</b> Total Conference Contributions</a></li>
 <li class="chapter" data-level="4.2" data-path="analysis-by-landscape-type.html"><a href="analysis-by-landscape-type.html#author-affiliation-1"><i class="fa fa-check"></i><b>4.2</b> Author Affiliation</a></li>
-<li class="chapter" data-level="4.3" data-path="analysis-by-landscape-type.html"><a href="analysis-by-landscape-type.html#species-1"><i class="fa fa-check"></i><b>4.3</b> Species</a></li>
+<li class="chapter" data-level="4.3" data-path="analysis-by-landscape-type.html"><a href="analysis-by-landscape-type.html#organism-2"><i class="fa fa-check"></i><b>4.3</b> Organism</a></li>
 <li class="chapter" data-level="4.4" data-path="analysis-by-landscape-type.html"><a href="analysis-by-landscape-type.html#methods-2"><i class="fa fa-check"></i><b>4.4</b> Methods</a></li>
 <li class="chapter" data-level="4.5" data-path="analysis-by-landscape-type.html"><a href="analysis-by-landscape-type.html#spatial-extent-2"><i class="fa fa-check"></i><b>4.5</b> Spatial Extent</a></li>
 <li class="chapter" data-level="4.6" data-path="analysis-by-landscape-type.html"><a href="analysis-by-landscape-type.html#temporal-extent-2"><i class="fa fa-check"></i><b>4.6</b> Temporal Extent</a></li>
@@ -169,7 +519,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.3.1" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#using-all-landscape-types-2"><i class="fa fa-check"></i><b>6.3.1</b> Using all landscape types</a></li>
 <li class="chapter" data-level="6.3.2" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#without-undefined-lsptype-and-other-landscape-types-2"><i class="fa fa-check"></i><b>6.3.2</b> Without ‘Undefined LspType’ and ‘Other’ landscape types</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#species-2"><i class="fa fa-check"></i><b>6.4</b> Species</a></li>
+<li class="chapter" data-level="6.4" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#organism-3"><i class="fa fa-check"></i><b>6.4</b> Organism</a></li>
 <li class="chapter" data-level="6.5" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#spatial-extent-4"><i class="fa fa-check"></i><b>6.5</b> Spatial Extent</a></li>
 <li class="chapter" data-level="6.6" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#temporal-extent-4"><i class="fa fa-check"></i><b>6.6</b> Temporal Extent</a><ul>
 <li class="chapter" data-level="6.6.1" data-path="analysis-by-methods.html"><a href="analysis-by-methods.html#with-undefined-1"><i class="fa fa-check"></i><b>6.6.1</b> With undefined</a></li>
@@ -185,7 +535,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.3.1" data-path="analysis-by-spatial-extent.html"><a href="analysis-by-spatial-extent.html#using-all-landscape-types-3"><i class="fa fa-check"></i><b>7.3.1</b> Using all landscape types</a></li>
 <li class="chapter" data-level="7.3.2" data-path="analysis-by-spatial-extent.html"><a href="analysis-by-spatial-extent.html#without-undefined-lsptype-and-other-landscape-types-3"><i class="fa fa-check"></i><b>7.3.2</b> Without ‘Undefined LspType’ and ‘Other’ landscape types</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="analysis-by-spatial-extent.html"><a href="analysis-by-spatial-extent.html#species-3"><i class="fa fa-check"></i><b>7.4</b> Species</a></li>
+<li class="chapter" data-level="7.4" data-path="analysis-by-spatial-extent.html"><a href="analysis-by-spatial-extent.html#organism-4"><i class="fa fa-check"></i><b>7.4</b> Organism</a></li>
 <li class="chapter" data-level="7.5" data-path="analysis-by-spatial-extent.html"><a href="analysis-by-spatial-extent.html#methods-4"><i class="fa fa-check"></i><b>7.5</b> Methods</a></li>
 <li class="chapter" data-level="7.6" data-path="analysis-by-spatial-extent.html"><a href="analysis-by-spatial-extent.html#temporal-extent-5"><i class="fa fa-check"></i><b>7.6</b> Temporal Extent</a><ul>
 <li class="chapter" data-level="7.6.1" data-path="analysis-by-spatial-extent.html"><a href="analysis-by-spatial-extent.html#with-undefined-2"><i class="fa fa-check"></i><b>7.6.1</b> With undefined</a></li>
@@ -201,7 +551,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.3.1" data-path="analysis-by-temporal-duration.html"><a href="analysis-by-temporal-duration.html#using-all-landscape-types-4"><i class="fa fa-check"></i><b>8.3.1</b> Using all landscape types</a></li>
 <li class="chapter" data-level="8.3.2" data-path="analysis-by-temporal-duration.html"><a href="analysis-by-temporal-duration.html#without-undefined-lsptype-and-other-landscape-types-4"><i class="fa fa-check"></i><b>8.3.2</b> Without ‘Undefined LspType’ and ‘Other’ landscape types</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="analysis-by-temporal-duration.html"><a href="analysis-by-temporal-duration.html#species-4"><i class="fa fa-check"></i><b>8.4</b> Species</a></li>
+<li class="chapter" data-level="8.4" data-path="analysis-by-temporal-duration.html"><a href="analysis-by-temporal-duration.html#organism-5"><i class="fa fa-check"></i><b>8.4</b> Organism</a></li>
 <li class="chapter" data-level="8.5" data-path="analysis-by-temporal-duration.html"><a href="analysis-by-temporal-duration.html#methods-5"><i class="fa fa-check"></i><b>8.5</b> Methods</a></li>
 <li class="chapter" data-level="8.6" data-path="analysis-by-temporal-duration.html"><a href="analysis-by-temporal-duration.html#spatial-extent-5"><i class="fa fa-check"></i><b>8.6</b> Spatial Extent</a></li>
 <li class="chapter" data-level="8.7" data-path="analysis-by-temporal-duration.html"><a href="analysis-by-temporal-duration.html#concepts-6"><i class="fa fa-check"></i><b>8.7</b> Concepts</a></li>
@@ -214,7 +564,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.3.1" data-path="analysis-by-concept.html"><a href="analysis-by-concept.html#using-all-landscape-types-5"><i class="fa fa-check"></i><b>9.3.1</b> Using all landscape types</a></li>
 <li class="chapter" data-level="9.3.2" data-path="analysis-by-concept.html"><a href="analysis-by-concept.html#without-undefined-lsptype-and-other-landscape-types-5"><i class="fa fa-check"></i><b>9.3.2</b> Without ‘Undefined LspType’ and ‘Other’ landscape types</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="analysis-by-concept.html"><a href="analysis-by-concept.html#species-5"><i class="fa fa-check"></i><b>9.4</b> Species</a></li>
+<li class="chapter" data-level="9.4" data-path="analysis-by-concept.html"><a href="analysis-by-concept.html#organism-6"><i class="fa fa-check"></i><b>9.4</b> Organism</a></li>
 <li class="chapter" data-level="9.5" data-path="analysis-by-concept.html"><a href="analysis-by-concept.html#methods-6"><i class="fa fa-check"></i><b>9.5</b> Methods</a></li>
 <li class="chapter" data-level="9.6" data-path="analysis-by-concept.html"><a href="analysis-by-concept.html#spatial-extent-6"><i class="fa fa-check"></i><b>9.6</b> Spatial Extent</a></li>
 <li class="chapter" data-level="9.7" data-path="analysis-by-concept.html"><a href="analysis-by-concept.html#temporal-extent-6"><i class="fa fa-check"></i><b>9.7</b> Temporal Extent</a><ul>
@@ -230,7 +580,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.3.1" data-path="analysis-by-other-concepts.html"><a href="analysis-by-other-concepts.html#using-all-landscape-types-6"><i class="fa fa-check"></i><b>10.3.1</b> Using all landscape types</a></li>
 <li class="chapter" data-level="10.3.2" data-path="analysis-by-other-concepts.html"><a href="analysis-by-other-concepts.html#without-undefined-lsptype-and-other-landscape-types-6"><i class="fa fa-check"></i><b>10.3.2</b> Without ‘Undefined LspType’ and ‘Other’ landscape types</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="analysis-by-other-concepts.html"><a href="analysis-by-other-concepts.html#species-6"><i class="fa fa-check"></i><b>10.4</b> Species</a></li>
+<li class="chapter" data-level="10.4" data-path="analysis-by-other-concepts.html"><a href="analysis-by-other-concepts.html#organism-7"><i class="fa fa-check"></i><b>10.4</b> Organism</a></li>
 <li class="chapter" data-level="10.5" data-path="analysis-by-other-concepts.html"><a href="analysis-by-other-concepts.html#methods-7"><i class="fa fa-check"></i><b>10.5</b> Methods</a></li>
 <li class="chapter" data-level="10.6" data-path="analysis-by-other-concepts.html"><a href="analysis-by-other-concepts.html#spatial-extent-7"><i class="fa fa-check"></i><b>10.6</b> Spatial Extent</a></li>
 <li class="chapter" data-level="10.7" data-path="analysis-by-other-concepts.html"><a href="analysis-by-other-concepts.html#temporal-extent-7"><i class="fa fa-check"></i><b>10.7</b> Temporal Extent</a><ul>
@@ -239,6 +589,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="10.8" data-path="analysis-by-other-concepts.html"><a href="analysis-by-other-concepts.html#concepts-7"><i class="fa fa-check"></i><b>10.8</b> Concepts</a></li>
 </ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -258,7 +611,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="analysis-by-spatial-extent" class="section level1">
 <h1><span class="header-section-number">Chapter 7</span> Analysis by Spatial Extent</h1>
-<p>Bar charts to examine how contributions to conferences vary by methods</p>
+<p>Bar charts and tables to examine how contributions to conferences vary by methods</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#spec(cpdata)</span>
 
 spatdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span>
@@ -268,15 +621,30 @@ spatdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Spatial</span><span class="st">`</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise_all</span>(sum, <span class="dt">na.rm=</span>T) 
 
+factor_order &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Micro&#39;</span>, <span class="st">&#39;Mini&#39;</span>, <span class="st">&#39;Local&#39;</span>, <span class="st">&#39;Regional&#39;</span>, <span class="st">&#39;National&#39;</span>, <span class="st">&#39;Continental&#39;</span>, <span class="st">&#39;Global&#39;</span>,<span class="st">&#39;Undefined Extent&#39;</span>)
+factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Micro&#39;</span>, <span class="st">&#39;Mini&#39;</span>, <span class="st">&#39;Local&#39;</span>, <span class="st">&#39;Regional&#39;</span>, <span class="st">&#39;National&#39;</span>, <span class="st">&#39;Continental&#39;</span>, <span class="st">&#39;Global&#39;</span>,<span class="st">&#39;Undefined&#39;</span>)
+
+spatdata &lt;-<span class="st"> </span>spatdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Spatial =</span> <span class="kw">factor</span>(Spatial, <span class="dt">levels =</span> factor_order)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(Spatial)
+
+
 uspatdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Spatial, <span class="dt">value =</span> count, Micro<span class="op">:</span>Global) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Spatial</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise_all</span>(sum, <span class="dt">na.rm=</span>T) </code></pre></div>
+<span class="st">  </span><span class="kw">summarise_all</span>(sum, <span class="dt">na.rm=</span>T) 
+
+ufactor_order &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Micro&#39;</span>, <span class="st">&#39;Mini&#39;</span>, <span class="st">&#39;Local&#39;</span>, <span class="st">&#39;Regional&#39;</span>, <span class="st">&#39;National&#39;</span>, <span class="st">&#39;Continental&#39;</span>, <span class="st">&#39;Global&#39;</span>,<span class="st">&#39;Undefined Extent&#39;</span>)
+ufactor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Micro&#39;</span>, <span class="st">&#39;Mini&#39;</span>, <span class="st">&#39;Local&#39;</span>, <span class="st">&#39;Regional&#39;</span>, <span class="st">&#39;National&#39;</span>, <span class="st">&#39;Continental&#39;</span>, <span class="st">&#39;Global&#39;</span>,<span class="st">&#39;Undefined&#39;</span>)
+
+uspatdata &lt;-<span class="st"> </span>uspatdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Spatial =</span> <span class="kw">factor</span>(Spatial, <span class="dt">levels =</span> ufactor_order)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(Spatial)</code></pre></div>
 <div id="total-conference-contributions-5" class="section level2">
 <h2><span class="header-section-number">7.1</span> Total Conference Contributions</h2>
-<p>Quick observations:</p>
+<p>General observations:</p>
 <ul>
 <li>Dominated by Local extent studies, but also many at national and regional extents</li>
 <li>Global and Continental (largest extent) have fewest studies (8 and 27 respectively)</li>
@@ -308,39 +676,6 @@ prop
 <tbody>
 <tr>
 <td style="text-align:left;">
-Continental
-</td>
-<td style="text-align:right;">
-27
-</td>
-<td style="text-align:right;">
-0.033
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Global
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-0.010
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Local
-</td>
-<td style="text-align:right;">
-231
-</td>
-<td style="text-align:right;">
-0.279
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 Micro
 </td>
 <td style="text-align:right;">
@@ -363,13 +698,13 @@ Mini
 </tr>
 <tr>
 <td style="text-align:left;">
-National
+Local
 </td>
 <td style="text-align:right;">
-146
+231
 </td>
 <td style="text-align:right;">
-0.176
+0.279
 </td>
 </tr>
 <tr>
@@ -381,6 +716,39 @@ Regional
 </td>
 <td style="text-align:right;">
 0.203
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+National
+</td>
+<td style="text-align:right;">
+146
+</td>
+<td style="text-align:right;">
+0.176
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Continental
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+0.033
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Global
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.010
 </td>
 </tr>
 <tr>
@@ -399,7 +767,8 @@ Undefined Extent
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(spatdata, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span><span class="kw">max</span>(count), <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(count),<span class="dv">1</span>), <span class="st">&quot;%&quot;</span>), <span class="dt">vjust=</span><span class="op">-</span><span class="fl">0.5</span>))</code></pre></div>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span><span class="kw">max</span>(count), <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(count),<span class="dv">1</span>), <span class="st">&quot;%&quot;</span>), <span class="dt">vjust=</span><span class="op">-</span><span class="fl">0.5</span>))<span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">15</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uspatdata <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(Spatial, count) <span class="op">%&gt;%</span>
@@ -426,39 +795,6 @@ prop
 <tbody>
 <tr>
 <td style="text-align:left;">
-Continental
-</td>
-<td style="text-align:right;">
-27
-</td>
-<td style="text-align:right;">
-0.038
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Global
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-0.011
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Local
-</td>
-<td style="text-align:right;">
-231
-</td>
-<td style="text-align:right;">
-0.323
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 Micro
 </td>
 <td style="text-align:right;">
@@ -481,13 +817,13 @@ Mini
 </tr>
 <tr>
 <td style="text-align:left;">
-National
+Local
 </td>
 <td style="text-align:right;">
-146
+231
 </td>
 <td style="text-align:right;">
-0.204
+0.323
 </td>
 </tr>
 <tr>
@@ -501,20 +837,54 @@ Regional
 0.235
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+National
+</td>
+<td style="text-align:right;">
+146
+</td>
+<td style="text-align:right;">
+0.204
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Continental
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+0.038
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Global
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.011
+</td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(uspatdata, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span><span class="kw">max</span>(count), <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(count),<span class="dv">1</span>), <span class="st">&quot;%&quot;</span>), <span class="dt">vjust=</span><span class="op">-</span><span class="fl">0.5</span>))</code></pre></div>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span><span class="kw">max</span>(count), <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(count),<span class="dv">1</span>), <span class="st">&quot;%&quot;</span>), <span class="dt">vjust=</span><span class="op">-</span><span class="fl">0.5</span>))<span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">15</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-54-2.png" width="672" /></p>
 </div>
 <div id="author-affiliation-4" class="section level2">
 <h2><span class="header-section-number">7.2</span> Author Affiliation</h2>
-<p>Quick observations:</p>
+<p>General observations:</p>
 <ul>
-<li>global studies are have greater proportions of Business and NGO authorship</li>
-<li>all extents dominated by academic authors, except Global and National</li>
+<li>Global studies are have greater proportions of Business and NGO authorship</li>
+<li>All extents dominated by academic authors, except Global and National</li>
 <li>All authorships represented at all extents except Private (in Micro and Global) and Government (in Global)</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">authCounts &lt;-<span class="st"> </span>spatdata <span class="op">%&gt;%</span>
@@ -575,120 +945,6 @@ Private_prop
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Continental
-</td>
-<td style="text-align:right;">
-16
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-0.533
-</td>
-<td style="text-align:right;">
-0.367
-</td>
-<td style="text-align:right;">
-0.033
-</td>
-<td style="text-align:right;">
-0.033
-</td>
-<td style="text-align:right;">
-0.033
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Global
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-0.375
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.250
-</td>
-<td style="text-align:right;">
-0.375
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Local
-</td>
-<td style="text-align:right;">
-151
-</td>
-<td style="text-align:right;">
-69
-</td>
-<td style="text-align:right;">
-39
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-274
-</td>
-<td style="text-align:right;">
-0.551
-</td>
-<td style="text-align:right;">
-0.252
-</td>
-<td style="text-align:right;">
-0.142
-</td>
-<td style="text-align:right;">
-0.026
-</td>
-<td style="text-align:right;">
-0.029
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 Micro
@@ -767,40 +1023,40 @@ Mini
 </tr>
 <tr>
 <td style="text-align:left;">
-National
+Local
 </td>
 <td style="text-align:right;">
-79
+151
 </td>
 <td style="text-align:right;">
-58
+69
 </td>
 <td style="text-align:right;">
-18
+39
 </td>
 <td style="text-align:right;">
-13
+7
 </td>
 <td style="text-align:right;">
-2
+8
 </td>
 <td style="text-align:right;">
-170
+274
 </td>
 <td style="text-align:right;">
-0.465
+0.551
 </td>
 <td style="text-align:right;">
-0.341
+0.252
 </td>
 <td style="text-align:right;">
-0.106
+0.142
 </td>
 <td style="text-align:right;">
-0.076
+0.026
 </td>
 <td style="text-align:right;">
-0.012
+0.029
 </td>
 </tr>
 <tr>
@@ -839,6 +1095,120 @@ Regional
 </td>
 <td style="text-align:right;">
 0.011
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+National
+</td>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+0.465
+</td>
+<td style="text-align:right;">
+0.341
+</td>
+<td style="text-align:right;">
+0.106
+</td>
+<td style="text-align:right;">
+0.076
+</td>
+<td style="text-align:right;">
+0.012
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Continental
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+0.533
+</td>
+<td style="text-align:right;">
+0.367
+</td>
+<td style="text-align:right;">
+0.033
+</td>
+<td style="text-align:right;">
+0.033
+</td>
+<td style="text-align:right;">
+0.033
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Global
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.375
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.250
+</td>
+<td style="text-align:right;">
+0.375
+</td>
+<td style="text-align:right;">
+0.000
 </td>
 </tr>
 <tr>
@@ -882,16 +1252,22 @@ Undefined Extent
 </tbody>
 </table>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(authCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(authCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)  <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Affiliation&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Extent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(authCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(authCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)  <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Affiliation&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Extent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-55-2.png" width="672" /></p>
 </div>
 <div id="landscape-type-4" class="section level2">
 <h2><span class="header-section-number">7.3</span> Landscape Type</h2>
 <div id="using-all-landscape-types-3" class="section level3">
 <h3><span class="header-section-number">7.3.1</span> Using all landscape types</h3>
-<p>Quick observations:</p>
+<p>General observations:</p>
 <ul>
 <li>Global extent studies do not consider Lowland rural landscapes</li>
 </ul>
@@ -965,156 +1341,6 @@ Other_prop
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Continental
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-13
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-35
-</td>
-<td style="text-align:right;">
-0.086
-</td>
-<td style="text-align:right;">
-0.229
-</td>
-<td style="text-align:right;">
-0.057
-</td>
-<td style="text-align:right;">
-0.114
-</td>
-<td style="text-align:right;">
-0.057
-</td>
-<td style="text-align:right;">
-0.371
-</td>
-<td style="text-align:right;">
-0.086
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Global
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.222
-</td>
-<td style="text-align:right;">
-0.111
-</td>
-<td style="text-align:right;">
-0.333
-</td>
-<td style="text-align:right;">
-0.333
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Local
-</td>
-<td style="text-align:right;">
-38
-</td>
-<td style="text-align:right;">
-116
-</td>
-<td style="text-align:right;">
-47
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:right;">
-26
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-277
-</td>
-<td style="text-align:right;">
-0.137
-</td>
-<td style="text-align:right;">
-0.419
-</td>
-<td style="text-align:right;">
-0.170
-</td>
-<td style="text-align:right;">
-0.123
-</td>
-<td style="text-align:right;">
-0.094
-</td>
-<td style="text-align:right;">
-0.054
-</td>
-<td style="text-align:right;">
-0.004
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 Micro
@@ -1217,52 +1443,52 @@ Mini
 </tr>
 <tr>
 <td style="text-align:left;">
-National
+Local
 </td>
 <td style="text-align:right;">
-35
+38
 </td>
 <td style="text-align:right;">
-49
+116
 </td>
 <td style="text-align:right;">
-9
+47
 </td>
 <td style="text-align:right;">
-14
+34
 </td>
 <td style="text-align:right;">
-14
+26
 </td>
 <td style="text-align:right;">
-39
+15
 </td>
 <td style="text-align:right;">
-11
+1
 </td>
 <td style="text-align:right;">
-171
+277
 </td>
 <td style="text-align:right;">
-0.205
+0.137
 </td>
 <td style="text-align:right;">
-0.287
+0.419
 </td>
 <td style="text-align:right;">
-0.053
+0.170
 </td>
 <td style="text-align:right;">
-0.082
+0.123
 </td>
 <td style="text-align:right;">
-0.082
+0.094
 </td>
 <td style="text-align:right;">
-0.228
+0.054
 </td>
 <td style="text-align:right;">
-0.064
+0.004
 </td>
 </tr>
 <tr>
@@ -1313,6 +1539,156 @@ Regional
 </td>
 <td style="text-align:right;">
 0.022
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+National
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+171
+</td>
+<td style="text-align:right;">
+0.205
+</td>
+<td style="text-align:right;">
+0.287
+</td>
+<td style="text-align:right;">
+0.053
+</td>
+<td style="text-align:right;">
+0.082
+</td>
+<td style="text-align:right;">
+0.082
+</td>
+<td style="text-align:right;">
+0.228
+</td>
+<td style="text-align:right;">
+0.064
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Continental
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+0.086
+</td>
+<td style="text-align:right;">
+0.229
+</td>
+<td style="text-align:right;">
+0.057
+</td>
+<td style="text-align:right;">
+0.114
+</td>
+<td style="text-align:right;">
+0.057
+</td>
+<td style="text-align:right;">
+0.371
+</td>
+<td style="text-align:right;">
+0.086
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Global
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.222
+</td>
+<td style="text-align:right;">
+0.111
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.000
 </td>
 </tr>
 <tr>
@@ -1368,14 +1744,20 @@ Undefined Extent
 </tbody>
 </table>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)  <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Landscape&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Extent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)  <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Landscape&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Extent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-56-2.png" width="672" /></p>
 </div>
 <div id="without-undefined-lsptype-and-other-landscape-types-3" class="section level3">
 <h3><span class="header-section-number">7.3.2</span> Without ‘Undefined LspType’ and ‘Other’ landscape types</h3>
-<p>Quick observations:</p>
+<p>General observations:</p>
 <ul>
 <li>National extent studies have largest proportion of Upland Rural landscape studies</li>
 <li>Micro, Mini and Regional extent studies dominated by Lowland rural</li>
@@ -1439,120 +1821,6 @@ Seascape_prop
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Continental
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-19
-</td>
-<td style="text-align:right;">
-0.158
-</td>
-<td style="text-align:right;">
-0.421
-</td>
-<td style="text-align:right;">
-0.105
-</td>
-<td style="text-align:right;">
-0.211
-</td>
-<td style="text-align:right;">
-0.105
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Global
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.333
-</td>
-<td style="text-align:right;">
-0.167
-</td>
-<td style="text-align:right;">
-0.500
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Local
-</td>
-<td style="text-align:right;">
-38
-</td>
-<td style="text-align:right;">
-116
-</td>
-<td style="text-align:right;">
-47
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:right;">
-26
-</td>
-<td style="text-align:right;">
-261
-</td>
-<td style="text-align:right;">
-0.146
-</td>
-<td style="text-align:right;">
-0.444
-</td>
-<td style="text-align:right;">
-0.180
-</td>
-<td style="text-align:right;">
-0.130
-</td>
-<td style="text-align:right;">
-0.100
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 Micro
@@ -1631,40 +1899,40 @@ Mini
 </tr>
 <tr>
 <td style="text-align:left;">
-National
+Local
 </td>
 <td style="text-align:right;">
-35
+38
 </td>
 <td style="text-align:right;">
-49
+116
 </td>
 <td style="text-align:right;">
-9
+47
 </td>
 <td style="text-align:right;">
-14
+34
 </td>
 <td style="text-align:right;">
-14
+26
 </td>
 <td style="text-align:right;">
-121
+261
 </td>
 <td style="text-align:right;">
-0.289
+0.146
 </td>
 <td style="text-align:right;">
-0.405
+0.444
 </td>
 <td style="text-align:right;">
-0.074
+0.180
 </td>
 <td style="text-align:right;">
-0.116
+0.130
 </td>
 <td style="text-align:right;">
-0.116
+0.100
 </td>
 </tr>
 <tr>
@@ -1703,6 +1971,120 @@ Regional
 </td>
 <td style="text-align:right;">
 0.099
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+National
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:right;">
+0.289
+</td>
+<td style="text-align:right;">
+0.405
+</td>
+<td style="text-align:right;">
+0.074
+</td>
+<td style="text-align:right;">
+0.116
+</td>
+<td style="text-align:right;">
+0.116
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Continental
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+0.158
+</td>
+<td style="text-align:right;">
+0.421
+</td>
+<td style="text-align:right;">
+0.105
+</td>
+<td style="text-align:right;">
+0.211
+</td>
+<td style="text-align:right;">
+0.105
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Global
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.167
+</td>
+<td style="text-align:right;">
+0.500
 </td>
 </tr>
 <tr>
@@ -1746,15 +2128,21 @@ Undefined Extent
 </tbody>
 </table>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Landscape&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Extent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Landscape&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Extent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-57-2.png" width="672" /></p>
 </div>
 </div>
-<div id="species-3" class="section level2">
-<h2><span class="header-section-number">7.4</span> Species</h2>
-<p>Quick observations</p>
+<div id="organism-4" class="section level2">
+<h2><span class="header-section-number">7.4</span> Organism</h2>
+<p>General observations:</p>
 <ul>
 <li>Global studies are again qualitatively different from other scale studies - no amphibiams, birds, reptiles, woodland studies but largest proportions of Fish and generic Habitat studies</li>
 <li>Smallest extents (mini and micro) have largest proportions of Plant and Inverts studies</li>
@@ -1847,210 +2235,6 @@ Woodland Forests_prop
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Continental
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-0.033
-</td>
-<td style="text-align:right;">
-0.200
-</td>
-<td style="text-align:right;">
-0.133
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.033
-</td>
-<td style="text-align:right;">
-0.133
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.333
-</td>
-<td style="text-align:right;">
-0.133
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Global
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.143
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.143
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.286
-</td>
-<td style="text-align:right;">
-0.429
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Local
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-43
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-25
-</td>
-<td style="text-align:right;">
-29
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-71
-</td>
-<td style="text-align:right;">
-52
-</td>
-<td style="text-align:right;">
-275
-</td>
-<td style="text-align:right;">
-0.055
-</td>
-<td style="text-align:right;">
-0.109
-</td>
-<td style="text-align:right;">
-0.156
-</td>
-<td style="text-align:right;">
-0.007
-</td>
-<td style="text-align:right;">
-0.091
-</td>
-<td style="text-align:right;">
-0.105
-</td>
-<td style="text-align:right;">
-0.018
-</td>
-<td style="text-align:right;">
-0.011
-</td>
-<td style="text-align:right;">
-0.258
-</td>
-<td style="text-align:right;">
-0.189
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 Micro
@@ -2189,70 +2373,70 @@ Mini
 </tr>
 <tr>
 <td style="text-align:left;">
-National
+Local
 </td>
 <td style="text-align:right;">
-8
+15
 </td>
 <td style="text-align:right;">
-19
+30
 </td>
 <td style="text-align:right;">
-16
+43
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:right;">
-10
+25
 </td>
 <td style="text-align:right;">
-20
+29
 </td>
 <td style="text-align:right;">
-0
+5
 </td>
 <td style="text-align:right;">
-0
+3
 </td>
 <td style="text-align:right;">
-48
+71
 </td>
 <td style="text-align:right;">
-34
+52
 </td>
 <td style="text-align:right;">
-157
+275
 </td>
 <td style="text-align:right;">
-0.051
+0.055
 </td>
 <td style="text-align:right;">
-0.121
+0.109
 </td>
 <td style="text-align:right;">
-0.102
+0.156
 </td>
 <td style="text-align:right;">
-0.013
+0.007
 </td>
 <td style="text-align:right;">
-0.064
+0.091
 </td>
 <td style="text-align:right;">
-0.127
+0.105
 </td>
 <td style="text-align:right;">
-0.000
+0.018
 </td>
 <td style="text-align:right;">
-0.000
+0.011
 </td>
 <td style="text-align:right;">
-0.306
+0.258
 </td>
 <td style="text-align:right;">
-0.217
+0.189
 </td>
 </tr>
 <tr>
@@ -2321,6 +2505,210 @@ Regional
 </td>
 <td style="text-align:right;">
 0.225
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+National
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+157
+</td>
+<td style="text-align:right;">
+0.051
+</td>
+<td style="text-align:right;">
+0.121
+</td>
+<td style="text-align:right;">
+0.102
+</td>
+<td style="text-align:right;">
+0.013
+</td>
+<td style="text-align:right;">
+0.064
+</td>
+<td style="text-align:right;">
+0.127
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.306
+</td>
+<td style="text-align:right;">
+0.217
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Continental
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+0.033
+</td>
+<td style="text-align:right;">
+0.200
+</td>
+<td style="text-align:right;">
+0.133
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.033
+</td>
+<td style="text-align:right;">
+0.133
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.133
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Global
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.143
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.143
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.286
+</td>
+<td style="text-align:right;">
+0.429
+</td>
+<td style="text-align:right;">
+0.000
 </td>
 </tr>
 <tr>
@@ -2394,14 +2782,20 @@ Undefined Extent
 </tbody>
 </table>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(speciesCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(speciesCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Organism&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Extent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(speciesCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(speciesCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Organism&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Extent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-58-2.png" width="672" /></p>
 </div>
 <div id="methods-4" class="section level2">
 <h2><span class="header-section-number">7.5</span> Methods</h2>
-<p>Quick observations:</p>
+<p>General observations:</p>
 <ul>
 <li>Global, Continental and Undefined Extent have the greatest proportions of Theoretical, Qualitative and Remote Sensing studies</li>
 <li>Smallest extents (mini and micro) have the largest proportions of Empirical studies (and local have largest absolute number)</li>
@@ -2471,138 +2865,6 @@ Remote sensing_prop
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Continental
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-51
-</td>
-<td style="text-align:right;">
-0.118
-</td>
-<td style="text-align:right;">
-0.216
-</td>
-<td style="text-align:right;">
-0.235
-</td>
-<td style="text-align:right;">
-0.196
-</td>
-<td style="text-align:right;">
-0.176
-</td>
-<td style="text-align:right;">
-0.059
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Global
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-0.133
-</td>
-<td style="text-align:right;">
-0.333
-</td>
-<td style="text-align:right;">
-0.200
-</td>
-<td style="text-align:right;">
-0.200
-</td>
-<td style="text-align:right;">
-0.067
-</td>
-<td style="text-align:right;">
-0.067
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Local
-</td>
-<td style="text-align:right;">
-115
-</td>
-<td style="text-align:right;">
-28
-</td>
-<td style="text-align:right;">
-48
-</td>
-<td style="text-align:right;">
-101
-</td>
-<td style="text-align:right;">
-73
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-379
-</td>
-<td style="text-align:right;">
-0.303
-</td>
-<td style="text-align:right;">
-0.074
-</td>
-<td style="text-align:right;">
-0.127
-</td>
-<td style="text-align:right;">
-0.266
-</td>
-<td style="text-align:right;">
-0.193
-</td>
-<td style="text-align:right;">
-0.037
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 Micro
@@ -2693,46 +2955,46 @@ Mini
 </tr>
 <tr>
 <td style="text-align:left;">
-National
+Local
 </td>
 <td style="text-align:right;">
-56
+115
 </td>
 <td style="text-align:right;">
-44
+28
 </td>
 <td style="text-align:right;">
-40
+48
 </td>
 <td style="text-align:right;">
-68
+101
 </td>
 <td style="text-align:right;">
-35
+73
 </td>
 <td style="text-align:right;">
-3
+14
 </td>
 <td style="text-align:right;">
-246
+379
 </td>
 <td style="text-align:right;">
-0.228
+0.303
 </td>
 <td style="text-align:right;">
-0.179
+0.074
 </td>
 <td style="text-align:right;">
-0.163
+0.127
 </td>
 <td style="text-align:right;">
-0.276
+0.266
 </td>
 <td style="text-align:right;">
-0.142
+0.193
 </td>
 <td style="text-align:right;">
-0.012
+0.037
 </td>
 </tr>
 <tr>
@@ -2777,6 +3039,138 @@ Regional
 </td>
 <td style="text-align:right;">
 0.039
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+National
+</td>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+246
+</td>
+<td style="text-align:right;">
+0.228
+</td>
+<td style="text-align:right;">
+0.179
+</td>
+<td style="text-align:right;">
+0.163
+</td>
+<td style="text-align:right;">
+0.276
+</td>
+<td style="text-align:right;">
+0.142
+</td>
+<td style="text-align:right;">
+0.012
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Continental
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+0.118
+</td>
+<td style="text-align:right;">
+0.216
+</td>
+<td style="text-align:right;">
+0.235
+</td>
+<td style="text-align:right;">
+0.196
+</td>
+<td style="text-align:right;">
+0.176
+</td>
+<td style="text-align:right;">
+0.059
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Global
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+0.133
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.200
+</td>
+<td style="text-align:right;">
+0.200
+</td>
+<td style="text-align:right;">
+0.067
+</td>
+<td style="text-align:right;">
+0.067
 </td>
 </tr>
 <tr>
@@ -2826,16 +3220,22 @@ Undefined Extent
 </tbody>
 </table>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Method&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Extent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Method&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Extent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-59-2.png" width="672" /></p>
 </div>
 <div id="temporal-extent-5" class="section level2">
 <h2><span class="header-section-number">7.6</span> Temporal Extent</h2>
 <div id="with-undefined-2" class="section level3">
 <h3><span class="header-section-number">7.6.1</span> With undefined</h3>
-<p>Quick observations:</p>
+<p>General observations:</p>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -2903,192 +3303,6 @@ Undefined Temporal_prop
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Continental
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-19
-</td>
-<td style="text-align:right;">
-26
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.077
-</td>
-<td style="text-align:right;">
-0.115
-</td>
-<td style="text-align:right;">
-0.077
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.731
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Global
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.125
-</td>
-<td style="text-align:right;">
-0.375
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.500
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Local
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-31
-</td>
-<td style="text-align:right;">
-38
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-122
-</td>
-<td style="text-align:right;">
-220
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0.005
-</td>
-<td style="text-align:right;">
-0.005
-</td>
-<td style="text-align:right;">
-0.064
-</td>
-<td style="text-align:right;">
-0.141
-</td>
-<td style="text-align:right;">
-0.173
-</td>
-<td style="text-align:right;">
-0.050
-</td>
-<td style="text-align:right;">
-0.009
-</td>
-<td style="text-align:right;">
-0.555
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 Micro
@@ -3215,64 +3429,64 @@ Mini
 </tr>
 <tr>
 <td style="text-align:left;">
-National
+Local
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;">
-0
+1
 </td>
 <td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
+1
 </td>
 <td style="text-align:right;">
 14
 </td>
 <td style="text-align:right;">
-37
+31
 </td>
 <td style="text-align:right;">
-3
+38
+</td>
+<td style="text-align:right;">
+11
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:right;">
-77
+122
 </td>
 <td style="text-align:right;">
-133
+220
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;">
-0.000
+0.005
 </td>
 <td style="text-align:right;">
-0.000
+0.005
 </td>
 <td style="text-align:right;">
-0.000
+0.064
 </td>
 <td style="text-align:right;">
-0.105
+0.141
 </td>
 <td style="text-align:right;">
-0.278
+0.173
 </td>
 <td style="text-align:right;">
-0.023
+0.050
 </td>
 <td style="text-align:right;">
-0.015
+0.009
 </td>
 <td style="text-align:right;">
-0.579
+0.555
 </td>
 </tr>
 <tr>
@@ -3335,6 +3549,192 @@ Regional
 </td>
 <td style="text-align:right;">
 0.631
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+National
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+77
+</td>
+<td style="text-align:right;">
+133
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.105
+</td>
+<td style="text-align:right;">
+0.278
+</td>
+<td style="text-align:right;">
+0.023
+</td>
+<td style="text-align:right;">
+0.015
+</td>
+<td style="text-align:right;">
+0.579
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Continental
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.077
+</td>
+<td style="text-align:right;">
+0.115
+</td>
+<td style="text-align:right;">
+0.077
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.731
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Global
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.125
+</td>
+<td style="text-align:right;">
+0.375
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.500
 </td>
 </tr>
 <tr>
@@ -3475,174 +3875,6 @@ Longer_prop
 <tbody>
 <tr>
 <td style="text-align:left;">
-Continental
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.286
-</td>
-<td style="text-align:right;">
-0.429
-</td>
-<td style="text-align:right;">
-0.286
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Global
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.250
-</td>
-<td style="text-align:right;">
-0.750
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Local
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-31
-</td>
-<td style="text-align:right;">
-38
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-98
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0.01
-</td>
-<td style="text-align:right;">
-0.010
-</td>
-<td style="text-align:right;">
-0.143
-</td>
-<td style="text-align:right;">
-0.316
-</td>
-<td style="text-align:right;">
-0.388
-</td>
-<td style="text-align:right;">
-0.112
-</td>
-<td style="text-align:right;">
-0.020
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 Micro
 </td>
 <td style="text-align:right;">
@@ -3755,58 +3987,58 @@ Mini
 </tr>
 <tr>
 <td style="text-align:left;">
-National
+Local
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;">
-0
+1
 </td>
 <td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
+1
 </td>
 <td style="text-align:right;">
 14
 </td>
 <td style="text-align:right;">
-37
+31
 </td>
 <td style="text-align:right;">
-3
+38
+</td>
+<td style="text-align:right;">
+11
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:right;">
-56
+98
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;">
-0.00
+0.01
 </td>
 <td style="text-align:right;">
-0.000
+0.010
 </td>
 <td style="text-align:right;">
-0.000
+0.143
 </td>
 <td style="text-align:right;">
-0.250
+0.316
 </td>
 <td style="text-align:right;">
-0.661
+0.388
 </td>
 <td style="text-align:right;">
-0.054
+0.112
 </td>
 <td style="text-align:right;">
-0.036
+0.020
 </td>
 </tr>
 <tr>
@@ -3863,6 +4095,174 @@ Regional
 </td>
 <td style="text-align:right;">
 0.052
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+National
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.250
+</td>
+<td style="text-align:right;">
+0.661
+</td>
+<td style="text-align:right;">
+0.054
+</td>
+<td style="text-align:right;">
+0.036
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Continental
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.286
+</td>
+<td style="text-align:right;">
+0.429
+</td>
+<td style="text-align:right;">
+0.286
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Global
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.250
+</td>
+<td style="text-align:right;">
+0.750
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
 </td>
 </tr>
 <tr>
@@ -3929,7 +4329,7 @@ Undefined Extent
 </div>
 <div id="concepts-5" class="section level2">
 <h2><span class="header-section-number">7.7</span> Concepts</h2>
-<p>Quick observations:</p>
+<p>General observations:</p>
 <ul>
 <li>Global extents have largest proportions of Ecosystem Services and Climate Change studies</li>
 <li>Continental and National extents have largest proportions of LUCC studies</li>
@@ -4028,210 +4428,6 @@ Accuracy and uncertainty_prop
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Continental
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-39
-</td>
-<td style="text-align:right;">
-0.026
-</td>
-<td style="text-align:right;">
-0.103
-</td>
-<td style="text-align:right;">
-0.051
-</td>
-<td style="text-align:right;">
-0.179
-</td>
-<td style="text-align:right;">
-0.282
-</td>
-<td style="text-align:right;">
-0.077
-</td>
-<td style="text-align:right;">
-0.026
-</td>
-<td style="text-align:right;">
-0.128
-</td>
-<td style="text-align:right;">
-0.128
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Global
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-20
-</td>
-<td style="text-align:right;">
-0.100
-</td>
-<td style="text-align:right;">
-0.100
-</td>
-<td style="text-align:right;">
-0.050
-</td>
-<td style="text-align:right;">
-0.050
-</td>
-<td style="text-align:right;">
-0.150
-</td>
-<td style="text-align:right;">
-0.100
-</td>
-<td style="text-align:right;">
-0.100
-</td>
-<td style="text-align:right;">
-0.300
-</td>
-<td style="text-align:right;">
-0.050
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Local
-</td>
-<td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-71
-</td>
-<td style="text-align:right;">
-18
-</td>
-<td style="text-align:right;">
-67
-</td>
-<td style="text-align:right;">
-69
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-25
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-354
-</td>
-<td style="text-align:right;">
-0.093
-</td>
-<td style="text-align:right;">
-0.201
-</td>
-<td style="text-align:right;">
-0.051
-</td>
-<td style="text-align:right;">
-0.189
-</td>
-<td style="text-align:right;">
-0.195
-</td>
-<td style="text-align:right;">
-0.059
-</td>
-<td style="text-align:right;">
-0.042
-</td>
-<td style="text-align:right;">
-0.093
-</td>
-<td style="text-align:right;">
-0.071
-</td>
-<td style="text-align:right;">
-0.006
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 Micro
@@ -4370,70 +4566,70 @@ Mini
 </tr>
 <tr>
 <td style="text-align:left;">
-National
+Local
 </td>
 <td style="text-align:right;">
-12
+33
 </td>
 <td style="text-align:right;">
-25
+71
 </td>
 <td style="text-align:right;">
-8
+18
 </td>
 <td style="text-align:right;">
-31
+67
 </td>
 <td style="text-align:right;">
-58
-</td>
-<td style="text-align:right;">
-22
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-25
+69
 </td>
 <td style="text-align:right;">
 21
 </td>
 <td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
 2
 </td>
 <td style="text-align:right;">
-212
+354
 </td>
 <td style="text-align:right;">
-0.057
+0.093
 </td>
 <td style="text-align:right;">
-0.118
+0.201
 </td>
 <td style="text-align:right;">
-0.038
+0.051
 </td>
 <td style="text-align:right;">
-0.146
+0.189
 </td>
 <td style="text-align:right;">
-0.274
+0.195
 </td>
 <td style="text-align:right;">
-0.104
+0.059
 </td>
 <td style="text-align:right;">
-0.038
+0.042
 </td>
 <td style="text-align:right;">
-0.118
+0.093
 </td>
 <td style="text-align:right;">
-0.099
+0.071
 </td>
 <td style="text-align:right;">
-0.009
+0.006
 </td>
 </tr>
 <tr>
@@ -4502,6 +4698,210 @@ Regional
 </td>
 <td style="text-align:right;">
 0.004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+National
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+212
+</td>
+<td style="text-align:right;">
+0.057
+</td>
+<td style="text-align:right;">
+0.118
+</td>
+<td style="text-align:right;">
+0.038
+</td>
+<td style="text-align:right;">
+0.146
+</td>
+<td style="text-align:right;">
+0.274
+</td>
+<td style="text-align:right;">
+0.104
+</td>
+<td style="text-align:right;">
+0.038
+</td>
+<td style="text-align:right;">
+0.118
+</td>
+<td style="text-align:right;">
+0.099
+</td>
+<td style="text-align:right;">
+0.009
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Continental
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+0.026
+</td>
+<td style="text-align:right;">
+0.103
+</td>
+<td style="text-align:right;">
+0.051
+</td>
+<td style="text-align:right;">
+0.179
+</td>
+<td style="text-align:right;">
+0.282
+</td>
+<td style="text-align:right;">
+0.077
+</td>
+<td style="text-align:right;">
+0.026
+</td>
+<td style="text-align:right;">
+0.128
+</td>
+<td style="text-align:right;">
+0.128
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Global
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+0.100
+</td>
+<td style="text-align:right;">
+0.100
+</td>
+<td style="text-align:right;">
+0.050
+</td>
+<td style="text-align:right;">
+0.050
+</td>
+<td style="text-align:right;">
+0.150
+</td>
+<td style="text-align:right;">
+0.100
+</td>
+<td style="text-align:right;">
+0.100
+</td>
+<td style="text-align:right;">
+0.300
+</td>
+<td style="text-align:right;">
+0.050
+</td>
+<td style="text-align:right;">
+0.000
 </td>
 </tr>
 <tr>
@@ -4575,14 +4975,20 @@ Undefined Extent
 </tbody>
 </table>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Extent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Extent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-62-2.png" width="672" /></p>
 </div>
 <div id="other-concepts-5" class="section level2">
 <h2><span class="header-section-number">7.8</span> Other Concepts</h2>
-<p>Quick observations:</p>
+<p>General observations:</p>
 <ul>
 <li>Smallest extents (micro and mini) have smallest proportions of Socio-Economic Dimensions studies and largest proportions of Biodiversity studies</li>
 <li>Consistent proportions of Management and Conservation studies across all extents</li>
@@ -4671,192 +5077,6 @@ Invasives Pests Diseases_prop
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Continental
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-45
-</td>
-<td style="text-align:right;">
-0.022
-</td>
-<td style="text-align:right;">
-0.044
-</td>
-<td style="text-align:right;">
-0.333
-</td>
-<td style="text-align:right;">
-0.156
-</td>
-<td style="text-align:right;">
-0.133
-</td>
-<td style="text-align:right;">
-0.156
-</td>
-<td style="text-align:right;">
-0.111
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.044
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Global
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-0.048
-</td>
-<td style="text-align:right;">
-0.143
-</td>
-<td style="text-align:right;">
-0.333
-</td>
-<td style="text-align:right;">
-0.048
-</td>
-<td style="text-align:right;">
-0.095
-</td>
-<td style="text-align:right;">
-0.286
-</td>
-<td style="text-align:right;">
-0.048
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Local
-</td>
-<td style="text-align:right;">
-22
-</td>
-<td style="text-align:right;">
-43
-</td>
-<td style="text-align:right;">
-108
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-45
-</td>
-<td style="text-align:right;">
-80
-</td>
-<td style="text-align:right;">
-13
-</td>
-<td style="text-align:right;">
-16
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-358
-</td>
-<td style="text-align:right;">
-0.061
-</td>
-<td style="text-align:right;">
-0.120
-</td>
-<td style="text-align:right;">
-0.302
-</td>
-<td style="text-align:right;">
-0.084
-</td>
-<td style="text-align:right;">
-0.126
-</td>
-<td style="text-align:right;">
-0.223
-</td>
-<td style="text-align:right;">
-0.036
-</td>
-<td style="text-align:right;">
-0.045
-</td>
-<td style="text-align:right;">
-0.003
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 Micro
@@ -4983,64 +5203,64 @@ Mini
 </tr>
 <tr>
 <td style="text-align:left;">
-National
+Local
 </td>
 <td style="text-align:right;">
-6
+22
 </td>
 <td style="text-align:right;">
-28
+43
 </td>
 <td style="text-align:right;">
-74
+108
 </td>
 <td style="text-align:right;">
-18
+30
 </td>
 <td style="text-align:right;">
-24
+45
 </td>
 <td style="text-align:right;">
-54
+80
 </td>
 <td style="text-align:right;">
-21
+13
 </td>
 <td style="text-align:right;">
-3
+16
 </td>
 <td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
-229
+358
 </td>
 <td style="text-align:right;">
-0.026
+0.061
 </td>
 <td style="text-align:right;">
-0.122
+0.120
 </td>
 <td style="text-align:right;">
-0.323
+0.302
 </td>
 <td style="text-align:right;">
-0.079
+0.084
 </td>
 <td style="text-align:right;">
-0.105
+0.126
 </td>
 <td style="text-align:right;">
-0.236
+0.223
 </td>
 <td style="text-align:right;">
-0.092
+0.036
 </td>
 <td style="text-align:right;">
-0.013
+0.045
 </td>
 <td style="text-align:right;">
-0.004
+0.003
 </td>
 </tr>
 <tr>
@@ -5103,6 +5323,192 @@ Regional
 </td>
 <td style="text-align:right;">
 0.007
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+National
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+229
+</td>
+<td style="text-align:right;">
+0.026
+</td>
+<td style="text-align:right;">
+0.122
+</td>
+<td style="text-align:right;">
+0.323
+</td>
+<td style="text-align:right;">
+0.079
+</td>
+<td style="text-align:right;">
+0.105
+</td>
+<td style="text-align:right;">
+0.236
+</td>
+<td style="text-align:right;">
+0.092
+</td>
+<td style="text-align:right;">
+0.013
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Continental
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+<td style="text-align:right;">
+0.044
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.156
+</td>
+<td style="text-align:right;">
+0.133
+</td>
+<td style="text-align:right;">
+0.156
+</td>
+<td style="text-align:right;">
+0.111
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.044
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Global
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+0.048
+</td>
+<td style="text-align:right;">
+0.143
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.048
+</td>
+<td style="text-align:right;">
+0.095
+</td>
+<td style="text-align:right;">
+0.286
+</td>
+<td style="text-align:right;">
+0.048
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
 </td>
 </tr>
 <tr>
@@ -5170,9 +5576,15 @@ Undefined Extent
 </tbody>
 </table>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(otherCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(otherCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Extent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(otherCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(otherCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Spatial, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Extent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-63-2.png" width="672" /></p>
 
 </div>
