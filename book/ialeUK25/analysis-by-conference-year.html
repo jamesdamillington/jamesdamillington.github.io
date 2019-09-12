@@ -622,7 +622,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">library</span>(viridis)
 path &lt;-<span class="st"> &quot;C:/Users/k1076631/Google Drive/Research/Papers/InProgress/ialeUK_25years/QuantAnalysis/Rproject&quot;</span>
 <span class="kw">setwd</span>(path)
-filename &lt;-<span class="st"> &quot;ialeUK25_abstracts_anon.csv&quot;</span>
+filename &lt;-<span class="st"> &quot;ialeUK25_abstracts_anon93.csv&quot;</span>
 cpdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(filename)
 
 this_theme &lt;-<span class="st"> </span><span class="kw">theme_get</span>() <span class="op">+</span><span class="st"> </span>
@@ -686,13 +686,24 @@ prop
 </tr>
 <tr>
 <td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+0.013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
 1994
 </td>
 <td style="text-align:right;">
 30
 </td>
 <td style="text-align:right;">
-0.033
+0.032
 </td>
 </tr>
 <tr>
@@ -725,7 +736,7 @@ prop
 62
 </td>
 <td style="text-align:right;">
-0.068
+0.067
 </td>
 </tr>
 <tr>
@@ -736,7 +747,7 @@ prop
 62
 </td>
 <td style="text-align:right;">
-0.068
+0.067
 </td>
 </tr>
 <tr>
@@ -780,7 +791,7 @@ prop
 71
 </td>
 <td style="text-align:right;">
-0.078
+0.077
 </td>
 </tr>
 <tr>
@@ -791,7 +802,7 @@ prop
 66
 </td>
 <td style="text-align:right;">
-0.072
+0.071
 </td>
 </tr>
 <tr>
@@ -802,7 +813,7 @@ prop
 29
 </td>
 <td style="text-align:right;">
-0.032
+0.031
 </td>
 </tr>
 <tr>
@@ -879,7 +890,7 @@ prop
 40
 </td>
 <td style="text-align:right;">
-0.044
+0.043
 </td>
 </tr>
 <tr>
@@ -890,7 +901,7 @@ prop
 40
 </td>
 <td style="text-align:right;">
-0.044
+0.043
 </td>
 </tr>
 <tr>
@@ -901,7 +912,7 @@ prop
 27
 </td>
 <td style="text-align:right;">
-0.030
+0.029
 </td>
 </tr>
 <tr>
@@ -920,7 +931,8 @@ prop
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(summary, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">Conference Year</span><span class="st">`</span>, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> scales<span class="op">::</span><span class="kw">pretty_breaks</span>(<span class="dt">n =</span> <span class="dv">5</span>))</code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="author-affiliation" class="section level2">
@@ -1028,6 +1040,47 @@ Private_prop
 </td>
 <td style="text-align:right;">
 0.053
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+166.083
+</td>
+<td style="text-align:right;">
+0.583
+</td>
+<td style="text-align:right;">
+0.417
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
 </td>
 <td style="text-align:right;">
 0.000
@@ -1908,7 +1961,9 @@ Private_prop
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(authorCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">Conference Year</span><span class="st">`</span>, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Affiliation&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Affiliation&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1992</span>, <span class="dv">2017</span>, <span class="dt">by =</span> <span class="dv">2</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">40</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) </code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 </div>
 <div id="landscape-type" class="section level2">
@@ -2043,6 +2098,59 @@ Other_prop
 </td>
 <td style="text-align:right;">
 0.053
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+90.591
+</td>
+<td style="text-align:right;">
+0.318
+</td>
+<td style="text-align:right;">
+0.364
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.045
+</td>
+<td style="text-align:right;">
+0.045
+</td>
+<td style="text-align:right;">
+0.091
+</td>
+<td style="text-align:right;">
+0.136
 </td>
 </tr>
 <tr>
@@ -3172,7 +3280,9 @@ factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">Conference Year</span><span class="st">`</span>, <span class="dt">y=</span>prop, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>factor_order))) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>, <span class="dt">labels =</span> factor_labels) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Lsp Type&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Lsp Type&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1992</span>, <span class="dv">2017</span>, <span class="dt">by =</span> <span class="dv">2</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">40</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) </code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
 </div>
 <div id="organism" class="section level2">
@@ -3342,6 +3452,77 @@ Woodland Forests_prop
 </td>
 <td style="text-align:right;">
 0.188
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+99.650
+</td>
+<td style="text-align:right;">
+0.050
+</td>
+<td style="text-align:right;">
+0.150
+</td>
+<td style="text-align:right;">
+0.050
+</td>
+<td style="text-align:right;">
+0.050
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.050
+</td>
+<td style="text-align:right;">
+0.050
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.450
+</td>
+<td style="text-align:right;">
+0.150
 </td>
 </tr>
 <tr>
@@ -4849,7 +5030,9 @@ factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(sppCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">Conference Year</span><span class="st">`</span>, <span class="dt">y=</span>prop, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>factor_order))) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>, <span class="dt">labels =</span> factor_labels) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Organism&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Organism&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1992</span>, <span class="dv">2017</span>, <span class="dt">by =</span> <span class="dv">2</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">40</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) </code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
 </div>
 <div id="methods" class="section level2">
@@ -4972,6 +5155,53 @@ Remote sensing_prop
 </td>
 <td style="text-align:right;">
 0.048
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+110.722
+</td>
+<td style="text-align:right;">
+0.056
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.389
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.056
 </td>
 </tr>
 <tr>
@@ -5975,7 +6205,9 @@ factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">Conference Year</span><span class="st">`</span>, <span class="dt">y=</span>prop, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>factor_order))) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>, <span class="dt">labels =</span> factor_labels) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Method&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Method&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1992</span>, <span class="dv">2017</span>, <span class="dt">by =</span> <span class="dv">2</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">40</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) </code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
 </div>
 <div id="spatial-extent" class="section level2">
@@ -6121,6 +6353,65 @@ Undefined Extent_prop
 </td>
 <td style="text-align:right;">
 0.105
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+132.867
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.133
+</td>
+<td style="text-align:right;">
+0.267
+</td>
+<td style="text-align:right;">
+0.267
+</td>
+<td style="text-align:right;">
+0.067
+</td>
+<td style="text-align:right;">
+0.133
+</td>
+<td style="text-align:right;">
+0.067
+</td>
+<td style="text-align:right;">
+0.067
 </td>
 </tr>
 <tr>
@@ -7376,7 +7667,9 @@ factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(extentCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">Conference Year</span><span class="st">`</span>, <span class="dt">y=</span>prop, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>factor_order))) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>, <span class="dt">labels =</span> factor_labels) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Spatial&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Spatial&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1992</span>, <span class="dv">2017</span>, <span class="dt">by =</span> <span class="dv">2</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">40</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) </code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
 </div>
 <div id="temporal-extent" class="section level2">
@@ -7518,6 +7811,71 @@ Undefined Temporal_prop
 </td>
 <td style="text-align:right;">
 0.611
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+166.083
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.083
+</td>
+<td style="text-align:right;">
+0.083
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.833
 </td>
 </tr>
 <tr>
@@ -9068,6 +9426,77 @@ Accuracy and uncertainty_prop
 </tr>
 <tr>
 <td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+73.815
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.370
+</td>
+<td style="text-align:right;">
+0.370
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.259
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
 1994
 </td>
 <td style="text-align:right;">
@@ -10572,7 +11001,9 @@ factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">Conference Year</span><span class="st">`</span>, <span class="dt">y=</span>prop, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>factor_order))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>, <span class="dt">labels =</span> factor_labels) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1992</span>, <span class="dv">2017</span>, <span class="dt">by =</span> <span class="dv">2</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">40</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) </code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
 </div>
 <div id="other-concepts" class="section level2">
@@ -10730,6 +11161,71 @@ Invasives Pests Diseases_prop
 </td>
 <td style="text-align:right;">
 0.083
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+66.433
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.200
+</td>
+<td style="text-align:right;">
+0.367
+</td>
+<td style="text-align:right;">
+0.200
+</td>
+<td style="text-align:right;">
+0.067
+</td>
+<td style="text-align:right;">
+0.167
+</td>
+<td style="text-align:right;">
+0.000
 </td>
 <td style="text-align:right;">
 0.000
@@ -12114,7 +12610,9 @@ factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(othCCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">Conference Year</span><span class="st">`</span>, <span class="dt">y=</span>prop, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>factor_order))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>, <span class="dt">labels =</span> factor_labels) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1992</span>, <span class="dv">2017</span>, <span class="dt">by =</span> <span class="dv">2</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">40</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) </code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
 
 </div>
