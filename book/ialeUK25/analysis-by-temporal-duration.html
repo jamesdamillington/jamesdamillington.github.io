@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 8 Analysis by Temporal Duration | ialeUK 25 Years of Conferences</title>
-  <meta name="description" content="Chapter 8 Analysis by Temporal Duration | ialeUK 25 Years of Conferences">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Analysis by Temporal Duration | 25 years of ialeUK conferences: An analysis</title>
+  <meta name="description" content="Chapter 8 Analysis by Temporal Duration | 25 years of ialeUK conferences: An analysis" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Analysis by Temporal Duration | ialeUK 25 Years of Conferences" />
+  <meta property="og:title" content="Chapter 8 Analysis by Temporal Duration | 25 years of ialeUK conferences: An analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -17,22 +16,22 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Analysis by Temporal Duration | ialeUK 25 Years of Conferences" />
+  <meta name="twitter:title" content="Chapter 8 Analysis by Temporal Duration | 25 years of ialeUK conferences: An analysis" />
   
   
   
 
-<meta name="author" content="James Millington">
+<meta name="author" content="James D.A. Millington" />
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="analysis-by-spatial-extent.html">
-<link rel="next" href="analysis-by-concept.html">
+<link rel="prev" href="analysis-by-spatial-extent.html"/>
+<link rel="next" href="analysis-by-concept.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -398,41 +400,66 @@ $(document).ready(function () {
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -601,7 +628,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ialeUK 25 Years of Conferences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">25 years of ialeUK conferences: An analysis</a>
           </h1>
         </div>
 
@@ -612,36 +639,36 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="analysis-by-temporal-duration" class="section level1">
 <h1><span class="header-section-number">Chapter 8</span> Analysis by Temporal Duration</h1>
 <p>Bar charts and tables to examine how contributions to conferences vary by methods</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#spec(cpdata)</span>
-
-tempdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Temporal, <span class="dt">value =</span> count, Hours<span class="op">:</span><span class="st">`</span><span class="dt">Undefined Temporal</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Temporal</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise_all</span>(sum, <span class="dt">na.rm=</span>T)
-
-tfactor_order &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Hours&#39;</span>, <span class="st">&#39;Days&#39;</span>, <span class="st">&#39;Weeks&#39;</span>, <span class="st">&#39;Months&#39;</span>, <span class="st">&#39;Years&#39;</span>, <span class="st">&#39;Decades&#39;</span>, <span class="st">&#39;Centuries&#39;</span>, <span class="st">&#39;Longer&#39;</span>, <span class="st">&#39;Undefined Temporal&#39;</span>)
-tfactor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Hours&#39;</span>, <span class="st">&#39;Days&#39;</span>, <span class="st">&#39;Weeks&#39;</span>, <span class="st">&#39;Months&#39;</span>, <span class="st">&#39;Years&#39;</span>, <span class="st">&#39;Decades&#39;</span>, <span class="st">&#39;Centuries&#39;</span>, <span class="st">&#39;Longer&#39;</span>, <span class="st">&#39;Undefined&#39;</span>)
-
-tempdata &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Temporal =</span> <span class="kw">factor</span>(Temporal, <span class="dt">levels =</span> tfactor_order)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(Temporal)
-
-
-utempdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Temporal, <span class="dt">value =</span> count, Hours<span class="op">:</span>Longer) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Temporal</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise_all</span>(sum, <span class="dt">na.rm=</span>T) 
-
-tfactor_order &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Hours&#39;</span>, <span class="st">&#39;Days&#39;</span>, <span class="st">&#39;Weeks&#39;</span>, <span class="st">&#39;Months&#39;</span>, <span class="st">&#39;Years&#39;</span>, <span class="st">&#39;Decades&#39;</span>, <span class="st">&#39;Centuries&#39;</span>, <span class="st">&#39;Longer&#39;</span>)
-tfactor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Hours&#39;</span>, <span class="st">&#39;Days&#39;</span>, <span class="st">&#39;Weeks&#39;</span>, <span class="st">&#39;Months&#39;</span>, <span class="st">&#39;Years&#39;</span>, <span class="st">&#39;Decades&#39;</span>, <span class="st">&#39;Centuries&#39;</span>, <span class="st">&#39;Longer&#39;</span>)
-
-utempdata &lt;-<span class="st"> </span>utempdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Temporal =</span> <span class="kw">factor</span>(Temporal, <span class="dt">levels =</span> tfactor_order)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(Temporal)</code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="co">#spec(cpdata)</span></a>
+<a class="sourceLine" id="cb124-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb124-3" data-line-number="3">tempdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-4" data-line-number="4"><span class="st">  </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-5" data-line-number="5"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Temporal, <span class="dt">value =</span> count, Hours<span class="op">:</span><span class="st">`</span><span class="dt">Undefined Temporal</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-6" data-line-number="6"><span class="st">  </span><span class="kw">filter</span>(count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-7" data-line-number="7"><span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Temporal</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-8" data-line-number="8"><span class="st">  </span><span class="kw">summarise_all</span>(sum, <span class="dt">na.rm=</span>T)</a>
+<a class="sourceLine" id="cb124-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb124-10" data-line-number="10">tfactor_order &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Hours&#39;</span>, <span class="st">&#39;Days&#39;</span>, <span class="st">&#39;Weeks&#39;</span>, <span class="st">&#39;Months&#39;</span>, <span class="st">&#39;Years&#39;</span>, <span class="st">&#39;Decades&#39;</span>, <span class="st">&#39;Centuries&#39;</span>, <span class="st">&#39;Longer&#39;</span>, <span class="st">&#39;Undefined Temporal&#39;</span>)</a>
+<a class="sourceLine" id="cb124-11" data-line-number="11">tfactor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Hours&#39;</span>, <span class="st">&#39;Days&#39;</span>, <span class="st">&#39;Weeks&#39;</span>, <span class="st">&#39;Months&#39;</span>, <span class="st">&#39;Years&#39;</span>, <span class="st">&#39;Decades&#39;</span>, <span class="st">&#39;Centuries&#39;</span>, <span class="st">&#39;Longer&#39;</span>, <span class="st">&#39;Undefined&#39;</span>)</a>
+<a class="sourceLine" id="cb124-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb124-13" data-line-number="13">tempdata &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-14" data-line-number="14"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Temporal =</span> <span class="kw">factor</span>(Temporal, <span class="dt">levels =</span> tfactor_order)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-15" data-line-number="15"><span class="st">  </span><span class="kw">arrange</span>(Temporal)</a>
+<a class="sourceLine" id="cb124-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb124-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb124-18" data-line-number="18">utempdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-19" data-line-number="19"><span class="st">  </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-20" data-line-number="20"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Temporal, <span class="dt">value =</span> count, Hours<span class="op">:</span>Longer) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-21" data-line-number="21"><span class="st">  </span><span class="kw">filter</span>(count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-22" data-line-number="22"><span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Temporal</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-23" data-line-number="23"><span class="st">  </span><span class="kw">summarise_all</span>(sum, <span class="dt">na.rm=</span>T) </a>
+<a class="sourceLine" id="cb124-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb124-25" data-line-number="25">tfactor_order &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Hours&#39;</span>, <span class="st">&#39;Days&#39;</span>, <span class="st">&#39;Weeks&#39;</span>, <span class="st">&#39;Months&#39;</span>, <span class="st">&#39;Years&#39;</span>, <span class="st">&#39;Decades&#39;</span>, <span class="st">&#39;Centuries&#39;</span>, <span class="st">&#39;Longer&#39;</span>)</a>
+<a class="sourceLine" id="cb124-26" data-line-number="26">tfactor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Hours&#39;</span>, <span class="st">&#39;Days&#39;</span>, <span class="st">&#39;Weeks&#39;</span>, <span class="st">&#39;Months&#39;</span>, <span class="st">&#39;Years&#39;</span>, <span class="st">&#39;Decades&#39;</span>, <span class="st">&#39;Centuries&#39;</span>, <span class="st">&#39;Longer&#39;</span>)</a>
+<a class="sourceLine" id="cb124-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb124-28" data-line-number="28">utempdata &lt;-<span class="st"> </span>utempdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-29" data-line-number="29"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Temporal =</span> <span class="kw">factor</span>(Temporal, <span class="dt">levels =</span> tfactor_order)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-30" data-line-number="30"><span class="st">  </span><span class="kw">arrange</span>(Temporal)</a></code></pre></div>
 <div id="total-conference-contributions-6" class="section level2">
 <h2><span class="header-section-number">8.1</span> Total Conference Contributions</h2>
 <p>General observations:</p>
@@ -649,13 +676,13 @@ utempdata &lt;-<span class="st"> </span>utempdata <span class="op">%&gt;%</span>
 <li>Majority of studies do not define or report their temporal duration (65%)</li>
 <li>Those that do generally have durations longer than Years (~89%)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tempdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Temporal, count) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count<span class="op">/</span><span class="kw">sum</span>(count)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> <span class="kw">round</span>(prop,<span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">kable_styling</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">tempdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb125-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Temporal, count) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb125-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count<span class="op">/</span><span class="kw">sum</span>(count)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb125-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> <span class="kw">round</span>(prop,<span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb125-5" data-line-number="5"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb125-6" data-line-number="6"><span class="st">  </span><span class="kw">kable_styling</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb125-7" data-line-number="7"><span class="st">  </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</a></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -763,19 +790,19 @@ Undefined Temporal
 </tbody>
 </table>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(tempdata, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span><span class="kw">max</span>(count), <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(count),<span class="dv">1</span>), <span class="st">&quot;%&quot;</span>), <span class="dt">vjust=</span><span class="op">-</span><span class="fl">0.5</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;All Data&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">15</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="kw">ggplot</span>(tempdata, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb126-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span><span class="kw">max</span>(count), <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(count),<span class="dv">1</span>), <span class="st">&quot;%&quot;</span>), <span class="dt">vjust=</span><span class="op">-</span><span class="fl">0.5</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb126-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;All Data&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">15</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb126-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">utempdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Temporal, count) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count<span class="op">/</span><span class="kw">sum</span>(count)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> <span class="kw">round</span>(prop,<span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">kable_styling</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">utempdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb127-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Temporal, count) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb127-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count<span class="op">/</span><span class="kw">sum</span>(count)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb127-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> <span class="kw">round</span>(prop,<span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb127-5" data-line-number="5"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb127-6" data-line-number="6"><span class="st">  </span><span class="kw">kable_styling</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb127-7" data-line-number="7"><span class="st">  </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</a></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -872,11 +899,11 @@ Longer
 </tbody>
 </table>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(utempdata, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span><span class="kw">max</span>(count), <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(count),<span class="dv">1</span>), <span class="st">&quot;%&quot;</span>), <span class="dt">vjust=</span><span class="op">-</span><span class="fl">0.5</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Excluding Undefined&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1"><span class="kw">ggplot</span>(utempdata, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb128-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb128-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span><span class="kw">max</span>(count), <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(count),<span class="dv">1</span>), <span class="st">&quot;%&quot;</span>), <span class="dt">vjust=</span><span class="op">-</span><span class="fl">0.5</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb128-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Excluding Undefined&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb128-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-65-2.png" width="672" /></p>
 </div>
 <div id="author-affiliation-5" class="section level2">
@@ -886,27 +913,27 @@ Longer
 <li>No obvious patterns</li>
 <li>Days, weeks and longer have very few responses (hence dominance)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">authCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Temporal,Academic, Government,NGO,Business,Private) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) <span class="co">#calculate proportion </span>
-
-authCountsW &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Temporal,Academic, Government,NGO,Business,Private) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate_if</span>(is.numeric, <span class="kw">funs</span>(<span class="dt">prop =</span> . <span class="op">/</span><span class="st"> </span>sum)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate_at</span>(<span class="dv">8</span><span class="op">:</span><span class="dv">12</span>, round, <span class="dv">3</span>)
-
-<span class="kw">ggplot</span>(authCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Affiliation&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">authCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb129-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Temporal,Academic, Government,NGO,Business,Private) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb129-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span></a>
+<a class="sourceLine" id="cb129-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb129-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) <span class="co">#calculate proportion </span></a>
+<a class="sourceLine" id="cb129-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb129-7" data-line-number="7">authCountsW &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb129-8" data-line-number="8"><span class="st">  </span><span class="kw">select</span>(Temporal,Academic, Government,NGO,Business,Private) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb129-9" data-line-number="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb129-10" data-line-number="10"><span class="st">  </span><span class="kw">mutate_if</span>(is.numeric, <span class="kw">funs</span>(<span class="dt">prop =</span> . <span class="op">/</span><span class="st"> </span>sum)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb129-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate_at</span>(<span class="dv">8</span><span class="op">:</span><span class="dv">12</span>, round, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb129-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb129-13" data-line-number="13"><span class="kw">ggplot</span>(authCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb129-14" data-line-number="14"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb129-15" data-line-number="15"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb129-16" data-line-number="16"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Affiliation&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(authCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Affiliation&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1"><span class="kw">ggplot</span>(authCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb130-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb130-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb130-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Affiliation&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-66-2.png" width="672" /></p>
 </div>
 <div id="landscape-type-5" class="section level2">
@@ -917,21 +944,21 @@ authCountsW &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span
 <ul>
 <li>Urban landscape studies tend to be shorter in duration</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lspCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Temporal,<span class="st">`</span><span class="dt">Upland rural</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Lowland rural</span><span class="st">`</span>, Urban,   Riverscape, Seascape, <span class="st">`</span><span class="dt">Undefined LspType</span><span class="st">`</span>,Other) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">8</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
-
-<span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Landscape&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">lspCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb131-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Temporal,<span class="st">`</span><span class="dt">Upland rural</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Lowland rural</span><span class="st">`</span>, Urban,   Riverscape, Seascape, <span class="st">`</span><span class="dt">Undefined LspType</span><span class="st">`</span>,Other) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb131-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">8</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span></a>
+<a class="sourceLine" id="cb131-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb131-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span></a>
+<a class="sourceLine" id="cb131-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb131-7" data-line-number="7"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb131-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb131-9" data-line-number="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb131-10" data-line-number="10"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Landscape&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Landscape&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb132-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb132-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb132-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Landscape&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-67-2.png" width="672" /></p>
 </div>
 <div id="without-undefined-lsptype-and-other-landscape-types-4" class="section level3">
@@ -940,21 +967,21 @@ authCountsW &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span
 <ul>
 <li>Urban landscape studies tend to be shorter in duration</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lspCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Temporal,<span class="st">`</span><span class="dt">Upland rural</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Lowland rural</span><span class="st">`</span>, Urban,   Riverscape, Seascape) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
-
-<span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Landscape&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">lspCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb133-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Temporal,<span class="st">`</span><span class="dt">Upland rural</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Lowland rural</span><span class="st">`</span>, Urban,   Riverscape, Seascape) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb133-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span></a>
+<a class="sourceLine" id="cb133-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb133-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span></a>
+<a class="sourceLine" id="cb133-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb133-7" data-line-number="7"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb133-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb133-9" data-line-number="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb133-10" data-line-number="10"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Landscape&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Landscape&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="kw">ggplot</span>(lspCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb134-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb134-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb134-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Landscape&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <pre><code>## Warning: Removed 5 rows containing missing values (position_stack).</code></pre>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-68-2.png" width="672" /></p>
 </div>
@@ -965,21 +992,21 @@ authCountsW &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span
 <ul>
 <li>Woodland and Forest have more studies at longer time extents</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">speciesCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Temporal, Mammals, Humans, Birds, Reptiles, Inverts, Plants, Amphibians, Fish, <span class="st">`</span><span class="dt">Generic Habitat</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Woodland Forests</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
-
-<span class="kw">ggplot</span>(speciesCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)  <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Organism&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1">speciesCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb136-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Temporal, Mammals, Humans, Birds, Reptiles, Inverts, Plants, Amphibians, Fish, <span class="st">`</span><span class="dt">Generic Habitat</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Woodland Forests</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb136-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span></a>
+<a class="sourceLine" id="cb136-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb136-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span></a>
+<a class="sourceLine" id="cb136-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb136-7" data-line-number="7"><span class="kw">ggplot</span>(speciesCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)  <span class="op">+</span></a>
+<a class="sourceLine" id="cb136-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb136-9" data-line-number="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb136-10" data-line-number="10"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Organism&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(speciesCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)  <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Organism&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="kw">ggplot</span>(speciesCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)  <span class="op">+</span></a>
+<a class="sourceLine" id="cb137-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb137-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb137-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Organism&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <pre><code>## Warning: Removed 10 rows containing missing values (position_stack).</code></pre>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-69-2.png" width="672" /></p>
 </div>
@@ -989,21 +1016,21 @@ authCountsW &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span
 <ul>
 <li>Theoretical studies seem to tend towards longer time extents</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">methodsCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Temporal, Empirical, Theoretical, Qualitative, Quantitative, GIS, <span class="st">`</span><span class="dt">Remote sensing</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">7</span>])) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) 
-
-<span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Method&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">methodsCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb139-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Temporal, Empirical, Theoretical, Qualitative, Quantitative, GIS, <span class="st">`</span><span class="dt">Remote sensing</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb139-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">7</span>])) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb139-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb139-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) </a>
+<a class="sourceLine" id="cb139-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb139-7" data-line-number="7"><span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb139-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb139-9" data-line-number="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb139-10" data-line-number="10"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Method&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Method&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb140-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb140-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Method&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <pre><code>## Warning: Removed 6 rows containing missing values (position_stack).</code></pre>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-70-2.png" width="672" /></p>
 </div>
@@ -1015,24 +1042,24 @@ authCountsW &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span
 <li>Longer studies are less likely to have a defined spatial extent</li>
 <li>Shorter studies are more likely to have smaller spatial extent</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">extentCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Temporal, Micro, Mini, Local, Regional, National, Continental, Global,<span class="st">`</span><span class="dt">Undefined Extent</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">9</span>])) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) 
-
-factor_order &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Micro&#39;</span>, <span class="st">&#39;Mini&#39;</span>, <span class="st">&#39;Local&#39;</span>, <span class="st">&#39;Regional&#39;</span>, <span class="st">&#39;National&#39;</span>, <span class="st">&#39;Continental&#39;</span>, <span class="st">&#39;Global&#39;</span>,<span class="st">&#39;Undefined Extent&#39;</span>)
-factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Micro&#39;</span>, <span class="st">&#39;Mini&#39;</span>, <span class="st">&#39;Local&#39;</span>, <span class="st">&#39;Regional&#39;</span>, <span class="st">&#39;National&#39;</span>, <span class="st">&#39;Continental&#39;</span>, <span class="st">&#39;Global&#39;</span>,<span class="st">&#39;Undefined&#39;</span>)
-
-<span class="kw">ggplot</span>(extentCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>factor_order))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)  <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Spatial&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1">extentCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb142-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Temporal, Micro, Mini, Local, Regional, National, Continental, Global,<span class="st">`</span><span class="dt">Undefined Extent</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb142-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">9</span>])) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb142-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb142-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) </a>
+<a class="sourceLine" id="cb142-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb142-7" data-line-number="7">factor_order &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Micro&#39;</span>, <span class="st">&#39;Mini&#39;</span>, <span class="st">&#39;Local&#39;</span>, <span class="st">&#39;Regional&#39;</span>, <span class="st">&#39;National&#39;</span>, <span class="st">&#39;Continental&#39;</span>, <span class="st">&#39;Global&#39;</span>,<span class="st">&#39;Undefined Extent&#39;</span>)</a>
+<a class="sourceLine" id="cb142-8" data-line-number="8">factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Micro&#39;</span>, <span class="st">&#39;Mini&#39;</span>, <span class="st">&#39;Local&#39;</span>, <span class="st">&#39;Regional&#39;</span>, <span class="st">&#39;National&#39;</span>, <span class="st">&#39;Continental&#39;</span>, <span class="st">&#39;Global&#39;</span>,<span class="st">&#39;Undefined&#39;</span>)</a>
+<a class="sourceLine" id="cb142-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb142-10" data-line-number="10"><span class="kw">ggplot</span>(extentCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>factor_order))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)  <span class="op">+</span></a>
+<a class="sourceLine" id="cb142-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb142-12" data-line-number="12"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb142-13" data-line-number="13"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Spatial&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(extentCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>factor_order))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Spatial&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="kw">ggplot</span>(extentCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>factor_order))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Spatial&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-71-2.png" width="672" /></p>
 </div>
 <div id="concepts-6" class="section level2">
@@ -1042,23 +1069,23 @@ factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 <li>Spatial Analysis tends towards shorter temporal extents</li>
 <li>Climate change studies seem to be longer extent studies</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">conceptCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Temporal, <span class="st">`</span><span class="dt">PPS of landscapes</span><span class="st">`</span>,
-<span class="st">`</span><span class="dt">Connectivity and fragmentation</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Scale and scaling</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Spatial analysis and modeling</span><span class="st">`</span>,LUCC,<span class="st">`</span><span class="dt">History and legacy</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Climate change interactions</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Ecosystem services</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Landscape sustainability</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Accuracy and uncertainty</span><span class="st">`</span>
-) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>])) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) 
-
-<span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">conceptCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb144-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Temporal, <span class="st">`</span><span class="dt">PPS of landscapes</span><span class="st">`</span>,</a>
+<a class="sourceLine" id="cb144-3" data-line-number="3"><span class="st">`</span><span class="dt">Connectivity and fragmentation</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Scale and scaling</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Spatial analysis and modeling</span><span class="st">`</span>,LUCC,<span class="st">`</span><span class="dt">History and legacy</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Climate change interactions</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Ecosystem services</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Landscape sustainability</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Accuracy and uncertainty</span><span class="st">`</span></a>
+<a class="sourceLine" id="cb144-4" data-line-number="4">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb144-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>])) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb144-6" data-line-number="6"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb144-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) </a>
+<a class="sourceLine" id="cb144-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb144-9" data-line-number="9"><span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb144-10" data-line-number="10"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb144-11" data-line-number="11"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb144-12" data-line-number="12"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1"><span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-72-2.png" width="672" /></p>
 </div>
 <div id="other-concepts-6" class="section level2">
@@ -1067,22 +1094,22 @@ factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 <ul>
 <li>No obvious patterns</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">otherCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Temporal, <span class="st">`</span><span class="dt">Green Infrastructure</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Planning and Architecture</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Management and Conservation</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Cultural Landscapes</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Socio-economic Dimensions</span><span class="st">`</span>,Biodiversity,<span class="st">`</span><span class="dt">Landscape Assessment</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Catchment Based Approach</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Invasives Pests Diseases</span><span class="st">`</span>
-) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>])) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) 
-
-<span class="kw">ggplot</span>(otherCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1">otherCounts &lt;-<span class="st"> </span>tempdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb146-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Temporal, <span class="st">`</span><span class="dt">Green Infrastructure</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Planning and Architecture</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Management and Conservation</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Cultural Landscapes</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Socio-economic Dimensions</span><span class="st">`</span>,Biodiversity,<span class="st">`</span><span class="dt">Landscape Assessment</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Catchment Based Approach</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Invasives Pests Diseases</span><span class="st">`</span></a>
+<a class="sourceLine" id="cb146-3" data-line-number="3">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb146-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>])) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb146-5" data-line-number="5"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>Temporal, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb146-6" data-line-number="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum) </a>
+<a class="sourceLine" id="cb146-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb146-8" data-line-number="8"><span class="kw">ggplot</span>(otherCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb146-9" data-line-number="9"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb146-10" data-line-number="10"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb146-11" data-line-number="11"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(otherCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="kw">ggplot</span>(otherCounts, <span class="kw">aes</span>(<span class="dt">x=</span>Temporal, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb147-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb147-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Temporal&quot;</span>)</a></code></pre></div>
 <pre><code>## Warning: Removed 9 rows containing missing values (position_stack).</code></pre>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-73-2.png" width="672" /></p>
 
@@ -1099,11 +1126,13 @@ factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

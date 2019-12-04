@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 4 Analysis by Landscape Type | ialeUK 25 Years of Conferences</title>
-  <meta name="description" content="Chapter 4 Analysis by Landscape Type | ialeUK 25 Years of Conferences">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Analysis by Landscape Type | 25 years of ialeUK conferences: An analysis</title>
+  <meta name="description" content="Chapter 4 Analysis by Landscape Type | 25 years of ialeUK conferences: An analysis" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Analysis by Landscape Type | ialeUK 25 Years of Conferences" />
+  <meta property="og:title" content="Chapter 4 Analysis by Landscape Type | 25 years of ialeUK conferences: An analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -17,22 +16,22 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Analysis by Landscape Type | ialeUK 25 Years of Conferences" />
+  <meta name="twitter:title" content="Chapter 4 Analysis by Landscape Type | 25 years of ialeUK conferences: An analysis" />
   
   
   
 
-<meta name="author" content="James Millington">
+<meta name="author" content="James D.A. Millington" />
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="analysis-by-author-affiliation.html">
-<link rel="next" href="analysis-by-organism.html">
+<link rel="prev" href="analysis-by-author-affiliation.html"/>
+<link rel="next" href="analysis-by-organism.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -398,41 +400,66 @@ $(document).ready(function () {
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -601,7 +628,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ialeUK 25 Years of Conferences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">25 years of ialeUK conferences: An analysis</a>
           </h1>
         </div>
 
@@ -614,25 +641,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Bar charts and tables to examine how contribution to conferences have changed over time.</p>
 <div id="total-conference-contributions-2" class="section level2">
 <h2><span class="header-section-number">4.1</span> Total Conference Contributions</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#spec(cpdata)</span>
-
-lspdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> LspType, <span class="dt">value =</span> count, <span class="st">`</span><span class="dt">Upland rural</span><span class="st">`</span><span class="op">:</span>Other) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise_all</span>(sum, <span class="dt">na.rm=</span>T) </code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co">#spec(cpdata)</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb47-3" data-line-number="3">lspdata &lt;-<span class="st"> </span>cpdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="st">  </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-5" data-line-number="5"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> LspType, <span class="dt">value =</span> count, <span class="st">`</span><span class="dt">Upland rural</span><span class="st">`</span><span class="op">:</span>Other) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-6" data-line-number="6"><span class="st">  </span><span class="kw">filter</span>(count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-7" data-line-number="7"><span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-8" data-line-number="8"><span class="st">  </span><span class="kw">summarise_all</span>(sum, <span class="dt">na.rm=</span>T) </a></code></pre></div>
 <p>General observations:</p>
 <ul>
 <li>Lowland rural dominate, followed by ‘undefined’ and Upland rural</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(LspType, count) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count<span class="op">/</span><span class="kw">sum</span>(count)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> <span class="kw">round</span>(prop,<span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">kable_styling</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">lspdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(LspType, count) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count<span class="op">/</span><span class="kw">sum</span>(count)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> <span class="kw">round</span>(prop,<span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-6" data-line-number="6"><span class="st">  </span><span class="kw">kable_styling</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-7" data-line-number="7"><span class="st">  </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</a></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -729,10 +756,10 @@ Urban
 </tbody>
 </table>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(lspdata, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span><span class="kw">max</span>(count), <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(count),<span class="dv">1</span>), <span class="st">&quot;%&quot;</span>), <span class="dt">vjust=</span><span class="op">-</span><span class="fl">0.25</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">ggplot</span>(lspdata, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span><span class="kw">max</span>(count), <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(count),<span class="dv">1</span>), <span class="st">&quot;%&quot;</span>), <span class="dt">vjust=</span><span class="op">-</span><span class="fl">0.25</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 <div id="author-affiliation-1" class="section level2">
@@ -741,21 +768,21 @@ Urban
 <ul>
 <li>Academic are majority of all landscape types, with possible exception of Upland rural (Government?)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">authorCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(LspType,Academic, Government,NGO,Business,Private) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
-
-<span class="kw">ggplot</span>(authorCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Affiliation&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">authorCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(LspType,Academic, Government,NGO,Business,Private) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span></a>
+<a class="sourceLine" id="cb50-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span></a>
+<a class="sourceLine" id="cb50-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb50-7" data-line-number="7"><span class="kw">ggplot</span>(authorCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-9" data-line-number="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-10" data-line-number="10"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Affiliation&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(authorCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Affiliation&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">ggplot</span>(authorCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Affiliation&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-24-2.png" width="672" /></p>
 </div>
 <div id="organism-2" class="section level2">
@@ -766,21 +793,21 @@ Urban
 <li>Humans are large contributor to seascape studies (possibly by absolute number as well as relative)</li>
 <li>Generic habitat is large contributor across all landscape types</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sppCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(LspType,Mammals, Humans, Birds, Reptiles, Inverts, Plants, Amphibians, Fish, <span class="st">`</span><span class="dt">Generic Habitat</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Woodland Forests</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
-
-<span class="kw">ggplot</span>(sppCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Organism&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">sppCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(LspType,Mammals, Humans, Birds, Reptiles, Inverts, Plants, Amphibians, Fish, <span class="st">`</span><span class="dt">Generic Habitat</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Woodland Forests</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span></a>
+<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span></a>
+<a class="sourceLine" id="cb52-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb52-7" data-line-number="7"><span class="kw">ggplot</span>(sppCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb52-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb52-9" data-line-number="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb52-10" data-line-number="10"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Organism&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(sppCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Organism&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">ggplot</span>(sppCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb53-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Organism&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
 </div>
 <div id="methods-2" class="section level2">
@@ -791,21 +818,21 @@ Urban
 <li>Lowland rural largely studies using empirical and quantitative methods</li>
 <li>Seascape studies have largest proportion of qualitative methods</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">methodsCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(LspType,Empirical, Theoretical, Qualitative, Quantitative, GIS, <span class="st">`</span><span class="dt">Remote sensing</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">7</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
-
-<span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Method&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">methodsCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(LspType,Empirical, Theoretical, Qualitative, Quantitative, GIS, <span class="st">`</span><span class="dt">Remote sensing</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">7</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span></a>
+<a class="sourceLine" id="cb54-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb54-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span></a>
+<a class="sourceLine" id="cb54-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb54-7" data-line-number="7"><span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb54-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb54-9" data-line-number="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb54-10" data-line-number="10"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Method&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Method&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">ggplot</span>(methodsCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Method&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
 </div>
 <div id="spatial-extent-2" class="section level2">
@@ -815,24 +842,24 @@ Urban
 <li>Urban landscape studies are dominated by Local scale analysis</li>
 <li>Upland rural have larger proportion of national studies than Lowland rural</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spatialCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(LspType,Micro, Mini, Local, Regional, National, Continental, Global,<span class="st">`</span><span class="dt">Undefined Extent</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">9</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
-
-factor_order &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Micro&#39;</span>, <span class="st">&#39;Mini&#39;</span>, <span class="st">&#39;Local&#39;</span>, <span class="st">&#39;Regional&#39;</span>, <span class="st">&#39;National&#39;</span>, <span class="st">&#39;Continental&#39;</span>, <span class="st">&#39;Global&#39;</span>,<span class="st">&#39;Undefined Extent&#39;</span>)
-factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Micro&#39;</span>, <span class="st">&#39;Mini&#39;</span>, <span class="st">&#39;Local&#39;</span>, <span class="st">&#39;Regional&#39;</span>, <span class="st">&#39;National&#39;</span>, <span class="st">&#39;Continental&#39;</span>, <span class="st">&#39;Global&#39;</span>,<span class="st">&#39;Undefined&#39;</span>)
-
-<span class="kw">ggplot</span>(spatialCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>factor_order))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Extent&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">spatialCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(LspType,Micro, Mini, Local, Regional, National, Continental, Global,<span class="st">`</span><span class="dt">Undefined Extent</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">9</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span></a>
+<a class="sourceLine" id="cb56-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb56-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span></a>
+<a class="sourceLine" id="cb56-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb56-7" data-line-number="7">factor_order &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Micro&#39;</span>, <span class="st">&#39;Mini&#39;</span>, <span class="st">&#39;Local&#39;</span>, <span class="st">&#39;Regional&#39;</span>, <span class="st">&#39;National&#39;</span>, <span class="st">&#39;Continental&#39;</span>, <span class="st">&#39;Global&#39;</span>,<span class="st">&#39;Undefined Extent&#39;</span>)</a>
+<a class="sourceLine" id="cb56-8" data-line-number="8">factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Micro&#39;</span>, <span class="st">&#39;Mini&#39;</span>, <span class="st">&#39;Local&#39;</span>, <span class="st">&#39;Regional&#39;</span>, <span class="st">&#39;National&#39;</span>, <span class="st">&#39;Continental&#39;</span>, <span class="st">&#39;Global&#39;</span>,<span class="st">&#39;Undefined&#39;</span>)</a>
+<a class="sourceLine" id="cb56-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb56-10" data-line-number="10"><span class="kw">ggplot</span>(spatialCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>factor_order))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb56-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb56-12" data-line-number="12"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb56-13" data-line-number="13"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Extent&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(spatialCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>factor_order))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Extent&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">ggplot</span>(spatialCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>factor_order))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Extent&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
 </div>
 <div id="temporal-extent-2" class="section level2">
@@ -842,24 +869,24 @@ factor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 <li>Upland have greatest proportion of Decadal studies</li>
 <li>Urban have greatest proportion of Monthly studies</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temporalCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(LspType,Hours, Days, Weeks, Months, Years, Decades, Centuries, Longer, <span class="st">`</span><span class="dt">Undefined Temporal</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
-
-tfactor_order &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Hours&#39;</span>, <span class="st">&#39;Days&#39;</span>, <span class="st">&#39;Weeks&#39;</span>, <span class="st">&#39;Months&#39;</span>, <span class="st">&#39;Years&#39;</span>, <span class="st">&#39;Decades&#39;</span>, <span class="st">&#39;Centuries&#39;</span>, <span class="st">&#39;Longer&#39;</span>, <span class="st">&#39;Undefined Temporal&#39;</span>)
-tfactor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Hours&#39;</span>, <span class="st">&#39;Days&#39;</span>, <span class="st">&#39;Weeks&#39;</span>, <span class="st">&#39;Months&#39;</span>, <span class="st">&#39;Years&#39;</span>, <span class="st">&#39;Decades&#39;</span>, <span class="st">&#39;Centuries&#39;</span>, <span class="st">&#39;Longer&#39;</span>, <span class="st">&#39;Undefined&#39;</span>)
-
-<span class="kw">ggplot</span>(temporalCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>tfactor_order))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Extent&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">temporalCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(LspType,Hours, Days, Weeks, Months, Years, Decades, Centuries, Longer, <span class="st">`</span><span class="dt">Undefined Temporal</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span></a>
+<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span>LspType, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span></a>
+<a class="sourceLine" id="cb58-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb58-7" data-line-number="7">tfactor_order &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Hours&#39;</span>, <span class="st">&#39;Days&#39;</span>, <span class="st">&#39;Weeks&#39;</span>, <span class="st">&#39;Months&#39;</span>, <span class="st">&#39;Years&#39;</span>, <span class="st">&#39;Decades&#39;</span>, <span class="st">&#39;Centuries&#39;</span>, <span class="st">&#39;Longer&#39;</span>, <span class="st">&#39;Undefined Temporal&#39;</span>)</a>
+<a class="sourceLine" id="cb58-8" data-line-number="8">tfactor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Hours&#39;</span>, <span class="st">&#39;Days&#39;</span>, <span class="st">&#39;Weeks&#39;</span>, <span class="st">&#39;Months&#39;</span>, <span class="st">&#39;Years&#39;</span>, <span class="st">&#39;Decades&#39;</span>, <span class="st">&#39;Centuries&#39;</span>, <span class="st">&#39;Longer&#39;</span>, <span class="st">&#39;Undefined&#39;</span>)</a>
+<a class="sourceLine" id="cb58-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb58-10" data-line-number="10"><span class="kw">ggplot</span>(temporalCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>count, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>tfactor_order))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb58-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb58-12" data-line-number="12"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb58-13" data-line-number="13"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Extent&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(temporalCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>tfactor_order))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Extent&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">ggplot</span>(temporalCounts, <span class="kw">aes</span>(<span class="dt">x=</span>LspType, <span class="dt">y=</span>prop, <span class="dt">fill=</span><span class="kw">factor</span>(Type, <span class="dt">level=</span>tfactor_order))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb59-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Extent&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-28-2.png" width="672" /></p>
 </div>
 <div id="concepts-2" class="section level2">
@@ -869,22 +896,22 @@ tfactor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span cla
 <li>Upland have greatest proportion of LUCC studies</li>
 <li>Seascape have greatest proportion of climate change studies</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">conceptCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>,<span class="st">`</span><span class="dt">PPS of landscapes</span><span class="st">`</span>,
-<span class="st">`</span><span class="dt">Connectivity and fragmentation</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Scale and scaling</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Spatial analysis and modeling</span><span class="st">`</span>,LUCC,<span class="st">`</span><span class="dt">History and legacy</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Climate change interactions</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Ecosystem services</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Landscape sustainability</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Accuracy and uncertainty</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
-
-<span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">conceptCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>,<span class="st">`</span><span class="dt">PPS of landscapes</span><span class="st">`</span>,</a>
+<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="st">`</span><span class="dt">Connectivity and fragmentation</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Scale and scaling</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Spatial analysis and modeling</span><span class="st">`</span>,LUCC,<span class="st">`</span><span class="dt">History and legacy</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Climate change interactions</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Ecosystem services</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Landscape sustainability</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Accuracy and uncertainty</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span></a>
+<a class="sourceLine" id="cb60-5" data-line-number="5"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-6" data-line-number="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span></a>
+<a class="sourceLine" id="cb60-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb60-8" data-line-number="8"><span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb60-9" data-line-number="9"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb60-10" data-line-number="10"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb60-11" data-line-number="11"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">ggplot</span>(conceptCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb61-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb61-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb61-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-29-2.png" width="672" /></p>
 </div>
 <div id="other-concepts-2" class="section level2">
@@ -895,21 +922,21 @@ tfactor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span cla
 <li>Unsurprisingly, Green Infrastructure has greatest proportion in Urban landscapes and catchment-based approaches in Riverscapes</li>
 <li>Little study of cultural landscapes in Urban areas</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">othCCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Green Infrastructure</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Planning and Architecture</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Management and Conservation</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Cultural Landscapes</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Socio-economic Dimensions</span><span class="st">`</span>,Biodiversity,<span class="st">`</span><span class="dt">Landscape Assessment</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Catchment Based Approach</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Invasives Pests Diseases</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="op">-</span>sum) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span>
-
-<span class="kw">ggplot</span>(othCCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">othCCounts &lt;-<span class="st"> </span>lspdata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb62-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Green Infrastructure</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Planning and Architecture</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Management and Conservation</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Cultural Landscapes</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Socio-economic Dimensions</span><span class="st">`</span>,Biodiversity,<span class="st">`</span><span class="dt">Landscape Assessment</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Catchment Based Approach</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Invasives Pests Diseases</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb62-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>])) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#calculate total for subsquent calcultation of proportion</span></a>
+<a class="sourceLine" id="cb62-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Type, <span class="dt">value =</span> count, <span class="op">-</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="op">-</span>sum) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb62-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count <span class="op">/</span><span class="st"> </span>sum)  <span class="co">#calculate proportion</span></a>
+<a class="sourceLine" id="cb62-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb62-7" data-line-number="7"><span class="kw">ggplot</span>(othCCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="dt">y=</span>count, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb62-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb62-9" data-line-number="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb62-10" data-line-number="10"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Abstract Count&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(othCCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="kw">ggplot</span>(othCCounts, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">LspType</span><span class="st">`</span>, <span class="dt">y=</span>prop, <span class="dt">fill=</span>Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb63-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">30</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb63-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">&quot;Concept&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>)</a></code></pre></div>
 <p><img src="bookdown-start_files/figure-html/unnamed-chunk-30-2.png" width="672" /></p>
 
 </div>
@@ -925,11 +952,13 @@ tfactor_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span cla
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
