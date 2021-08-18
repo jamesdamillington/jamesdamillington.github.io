@@ -18,7 +18,7 @@ to setup
   [
     sprout 1    ;this patch 'sprouts' a turtle
     [
-      set color blue       ;set the colour of the new turtle blue
+      set color [117 112 179]       ;set the colour of the new turtle blue
       set shape "circle"   ;set the shape of the new turtle t a circle
       ]
   ]
@@ -39,7 +39,7 @@ to highlight
   [
     set pcolor white                            ;set the patch colour white
     ask neighbors [ set pcolor white ]          ;ask the 8 surrounding patches to set their colour to white
-    ask turtles-here [ set color yellow ]       ;ask the central turtle (on patch 0 0) to set their colour to yellow
+    ask turtles-here [ set color white ]       ;ask the central turtle (on patch 0 0) to set their colour to white (i.e. disappear)
   ]
 
 end
@@ -61,8 +61,8 @@ to answer
 
     ;change the colour of the turtle depending on whether the are happy or not
     ifelse(happy?)
-    [ set color green ]
-    [ set color red ]
+    [ set color [27 158 119] ]   ;green colorblind safe from https://colorbrewer2.org
+    [ set color [217 95 2] ]     ;red (orange) colorblind safe from https://colorbrewer2.org
   ]
 
 end
@@ -163,10 +163,9 @@ NIL
 @#$#@#$#@
 ## WHAT IS IT?
 
-This project is a basic demonstration of how NetLogo can represent households and their happiness relative to the % of neighbours they wish to be of the same type as themselves. 
+This is a basic demonstration of how NetLogo can represent households and their happiness relative to the % of neighbours they wish to be of the same type as themselves. 
 
-This project was inspired by Thomas Schelling's writings about segregation (such as housing patterns in cities).
-
+The idea was inspired by Thomas Schelling's writings about segregation, such as housing patterns in cities (Schelling 1978, Rauch 2002). The code and project was developed from the NetLogo Segregation model (Wilesky 1997). Colours have been selected from [ColorBrewer](https://colorbrewer2.org) to be colourblind safe.
 
 ## HOW TO USE IT
 
@@ -178,7 +177,6 @@ Set the %-similar-wanted slider to the % of neighbours of a similar types that a
 
 Click ANSWER to ask NetLogo to calculate and show which turtles are happy (they will turn green) and unhapp (they will turn red) given their spatial context (i.e. the types of turtles that surround them. 
 
-
 ## THINGS TO NOTICE
 
 When you execute SETUP, the stars and circles are randomly distributed throughout the space. 
@@ -189,39 +187,34 @@ The % of happy and unhappy turtles varies as the %-similar-wanted value changes.
 
 Note that turtles at the edge of the space consider the patches on the OPPOSITE side of the space as their neghbours. This is because the space is assume to wrap around from one edge to the opposite edge, creating a surface known as a torus (imagine walking on the surface of a doughnut with a hole in it) 
 
-
 ## THINGS TO TRY
 
 Check you understand how happiness is estimated by clicking SETUP, then guessing what colour the central turtle will turn (red = unhappy, green = happy) BEFORE clicking Answer. 
 
-Click the Code tab above and find the 'answer' procedure. See if you can work out how the code works. 
+Click the Code tab and find the 'answer' procedure. See if you can work out how the code works. 
 
 Try different values for %-SIMILAR-WANTED. How does the number of happy vs unhappy turtles change?
 
-
-## NETLOGO FEATURES
-
-`n-of` and `sprout` are used to create turtles while ensuring no patch has more than one turtle on it.
-
-
-## CREDITS AND REFERENCES
-
-Schelling, T. (1978). Micromotives and Macrobehavior. New York: Norton.
- 
-See also a recent Atlantic article:   Rauch, J. (2002). Seeing Around Corners; The Atlantic Monthly; April 2002;Volume 289, No. 4; 35-48. http://www.theatlantic.com/issues/2002/04/rauch.htm
-
-Based on the NetLogo Segregation model by Wilesky (1997)
-
 ## REFERENCES
 
-* Wilensky, U. (1997).  NetLogo Segregation model.  http://ccl.northwestern.edu/netlogo/models/Segregation.  Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.
-* Wilensky, U. (1999). NetLogo. http://ccl.northwestern.edu/netlogo/. Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.
+Rauch, J. (2002). Seeing Around Corners; The Atlantic Monthly; April 2002;Volume 289, No. 4; 35-48. http://www.theatlantic.com/issues/2002/04/rauch.htm
+
+Schelling, T. (1978). Micromotives and Macrobehavior. New York: Norton.
+
+Wilensky, U. (1997).  NetLogo Segregation model.  http://ccl.northwestern.edu/netlogo/models/Segregation.  Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.
 
 ## COPYRIGHT AND LICENSE
 
+The original work by Willensky (1997) was licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License](http://creativecommons.org/licenses/by-nc-sa/3.0/).
+
 ![CC BY-NC-SA 3.0](http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png)
 
-This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License.  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
+This work is licensed by [James D.A. Millington](http://www.landscapemodelling.net) under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/). 
+ 
+![CC BY-NC-SA 4.0](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
+
+This work should be cited as:
+Millington, J.D.A. (2021) Happiness in Schelling's World. NetLogo model. http://www.landscapemodelling.net/models/schelling
 @#$#@#$#@
 default
 true
@@ -505,7 +498,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0
+NetLogo 6.1.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

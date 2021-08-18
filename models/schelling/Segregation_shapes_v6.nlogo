@@ -32,7 +32,7 @@ to setup
   ;; create households on random patches
   ask n-of number patches
   [
-    sprout 1 [ set shape "circle" set color blue ] ]
+    sprout 1 [ set shape "circle" set color [117 112 179] ] ]
 
   ;; turn half the households to stars
   ask n-of (number / 2) turtles
@@ -101,8 +101,8 @@ to update-households
 
     ;change the colour of the household depending on whether they are happy or not
     ifelse(happy?)
-    [ set color green ]
-    [ set color red ]
+    [ set color [27 158 119] ]
+    [ set color [217 95 2] ]
   ]
 
 end
@@ -181,7 +181,7 @@ true
 false
 "" ""
 PENS
-"percent" 1.0 0 -13840069 true "" "plot percent-similar"
+"percent" 1.0 0 -14835848 true "" "plot percent-similar"
 
 PLOT
 12
@@ -199,12 +199,12 @@ true
 false
 "" ""
 PENS
-"percent" 1.0 0 -2674135 true "" "plot percent-unhappy"
+"percent" 1.0 0 -2269166 true "" "plot percent-unhappy"
 
 SLIDER
-19
+14
 22
-231
+262
 55
 number
 number
@@ -217,10 +217,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-19
-95
-231
-128
+14
+97
+261
+130
 %-similar-wanted
 %-similar-wanted
 0
@@ -232,10 +232,10 @@ SLIDER
 HORIZONTAL
 
 BUTTON
-48
-58
-128
-91
+13
+59
+85
+92
 setup
 setup
 NIL
@@ -249,13 +249,30 @@ NIL
 1
 
 BUTTON
-129
-58
-209
-91
+187
+59
+262
+92
 go
 go
 T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+99
+59
+176
+92
+go once
+go
+NIL
 1
 T
 OBSERVER
@@ -268,15 +285,21 @@ NIL
 @#$#@#$#@
 ## WHAT IS IT?
 
-This project models the behavior of two types of 'household' in a hypothetical neighbourhood space. The star households and circle households (represented in NetLogo as 'households') get along with one another. But each household wants to make sure that it lives near some of "its own." That is, each star household wants to live near at least some star household, and each circle household wants to live near at least some circle household. The simulation shows how these individual preferences ripple through the neighbourhood, leading to large-scale patterns.
+This model represents the behaviour of two types of 'household' in a hypothetical city space based on their 'happiness' with the composition of their local neighbourhood.
 
-This project was inspired by Thomas Schelling's writings about social systems (such as housing patterns in cities).
+The star households and circle households get along with one another. But each household wants to make sure that it lives near some of "its own." That is, each star household wants to live near at least some star households, and each circle household wants to live near at least some circle households. Households determine if they are happy as in the _Happiness in Schelling's World_ model (Millington 2021). 
+
+This model extends the the _Happiness in Schelling's World_ model (Millington 2021) by enabling households to move if they are unhappy with the composition of their local neighbourhood. It does this by moving unhappy households to randomly selected locations in the city, where the household again assess if they are happy or not. By repating (iterating) this process over and over, the simulation of the model shows how individual preferences ripple through the city, leading to large-scale patterns (of segregation).
+
+The idea was inspired by Thomas Schelling's writings about segregation, such as housing patterns in cities (Schelling 1978, Rauch 2002). The code and project was developed from the _NetLogo Segregation_ model (Wilesky 1997) and builds on the _Happiness in Schelling's World_ model (Millington 2021). Colours have been selected from [ColorBrewer](https://colorbrewer2.org) to be colourblind safe.
 
 ## HOW TO USE IT
 
-Click the SETUP button to set up the household. There are equal numbers of star and circle household. The householdmove around until there is at most one household on a patch.  
+Click the SETUP button to set up the households. There are equal numbers of star and circle households. 
 
-Click GO to start the simulation. If households don't have enough same-shape neighbours, they move to a random nearby patch.
+Click GO to start the simulation. The households move around until there is at most one household on a patch. If households don't have enough same-shape neighbours, they move to a random nearby patch. This repeats until all households are happy (or continues forever!)
+
+Click GO ONCE to simulate the movement of households once (i.e. one iteration of the go procedure). 
 
 The NUMBER slider controls the total number of households. (It takes effect the next time you click SETUP.)  
 
@@ -286,42 +309,46 @@ The % SIMILAR monitor shows the average percentage of same-colour neighbours for
 
 The % UNHAPPY monitor shows the percent of households that have fewer same-shape neighbours than they want (and thus want to move). Both monitors are also plotted through time.
 
+The number of times move-unhappy-households procedure has been repeated is shown as the number of iterations (above the model grid, top centre)
+
 ## THINGS TO NOTICE
 
-When you execute SETUP, the star and circle households are randomly distributed throughout the space. But many households are "unhappy" since they don't have enough same-shape neighbors. The unhappy households move to rnadom new locations in the vicinity. But in the new locations, they might tip the balance of the local population, prompting other households to leave. If a few star households move into an area, the local circle households might leave. But when the cirle households move to a new area, they might prompt star households to leave that area.
+Households turn a green colour when they are happy, and a red (orange) colour when they are unhappy. When you click SETUP, the star and circle households are randomly distributed throughout the space. But many households are "unhappy" since they don't have enough same-shape neighbours. 
 
+When you click GO ONCE, the unhappy households move to random new locations in the city. They may be happy or unhappy with their new location (i.e. households do not seek locations where they will know they will be happy, but rather move randomly). Regardless of their own happiness in the new locations, households might tip the balance of the nehighbourhood population they have moved to, prompting other households to leave! If a few star households move into an area, the local circle households might leave. But when the cirle households move to a new area, they might prompt star households to leave that area. See if you can observe this happening (although it can be quite difficult in this large model). 
+
+When you click GO, the process above is repeated (iterated) until all households are happy. Notice that sometimes this continues forever! Why is this?
 
 ## THINGS TO TRY
 
-1. For 2000 households, if each household wants at least 10% same-color neighbors, what percentage (on average) do they end up with? How many iterations does it take for all households to be happy?
+1. For 2000 households, if each household wants at least 10% same-shape neighbours, what percentage (on average) do they end up with? How many iterations (repeats) does it take for all households to be happy? 
+ 
+2. Repeat 2. for 33%, 50%, 66% and 90%. How does the overall degree of segregation change? Working through values systematically like this, recording your results, is a scientific approach. 
 
-2. Repeat 2. for 33%, 50%, 66% and 90%. How does the overall degree of segregation change?
+3. Repeat 1. and 2. for different numbers of households in the space. Does this influence results? Why or why not?
 
-3. Repeat 1. and 2. for different numbers of households in the neighbourhood. Does this influence recults? Why or why not?
+## REFERENCES
 
+Millington, J.D.A. (2021) Happiness in Schelling's World. NetLogo model. http://www.landscapemodelling.net/models/schelling
 
-## NETLOGO FEATURES
-
-`n-of` and `sprout` are used to create households while ensuring no patch has more than one household on it.
-
-When a household moves, `move-to` is used to move the household to the center of the patch it eventually finds.
-
-## CREDITS AND REFERENCES
+Rauch, J. (2002). Seeing Around Corners; The Atlantic Monthly; April 2002;Volume 289, No. 4; 35-48. http://www.theatlantic.com/issues/2002/04/rauch.htm
 
 Schelling, T. (1978). Micromotives and Macrobehavior. New York: Norton.
- 
-See also a recent Atlantic article:   Rauch, J. (2002). Seeing Around Corners; The Atlantic Monthly; April 2002;Volume 289, No. 4; 35-48. http://www.theatlantic.com/issues/2002/04/rauch.htm
 
-This model is an edited version of: Wilensky, U. (1997). NetLogo Segregation model. http://ccl.northwestern.edu/netlogo/models/Segregation. Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.
-
-Wilensky, U. (1999). NetLogo. http://ccl.northwestern.edu/netlogo/. Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.
-
+Wilensky, U. (1997).  NetLogo Segregation model.  http://ccl.northwestern.edu/netlogo/models/Segregation.  Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.
 
 ## COPYRIGHT AND LICENSE
 
+The original work by Willensky (1997) was licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License](http://creativecommons.org/licenses/by-nc-sa/3.0/).
+
 ![CC BY-NC-SA 3.0](http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png)
 
-This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License.  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
+This work is licensed by [James D.A. Millington](http://www.landscapemodelling.net) under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/). 
+ 
+![CC BY-NC-SA 4.0](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
+
+This work should be cited as:
+Millington, J.D.A. (2021) Schelling's Segregation Shapes. NetLogo model. http://www.landscapemodelling.net/models/schelling
 @#$#@#$#@
 default
 true
@@ -605,7 +632,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0
+NetLogo 6.1.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

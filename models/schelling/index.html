@@ -18,37 +18,51 @@
 <h1>Does spatial segregation of ethnic groups in cities imply intolerant individuals?</h1>
 <p><br/>We will explore how we might use agent-based modelling to think about this question, following in the footsteps of <a href="https://en.wikipedia.org/wiki/Thomas_Schelling#Models_of_segregation" target="_blank">Thomas Schelling</a>.
 
-<br/><br/><br/><b>Step 1:</b> Let's think about a hypothetical city neighbourhood with households on a grid. How might we define 'happiness' of a household with reference to the similarity of its neighbours (i.e. its spatial context). 
+<br/><br/><br/><b>Step 1:</b> Let's think about a hypothetical city neighbourhood with households on a grid. How might we define 'happiness' of a household with reference to the similarity of its neighbours (i.e. its spatial context).
 
-<br/><br/><b>1a</b> Download <a href="HappyUnhappy_v6.nlogo">this model code</a> to the N: drive [you may need to right-click and 'Save Link As'], open in NetLogo, and work your way through the Info tab. Make sure you understand how 'happiness' is defined. 
+<br/><br/><b>1a</b> Download <a href="HappyUnhappy_v6.nlogo">this model code</a> (<a href="https://support.google.com/chrome/answer/95759?hl=en-GB&co=GENIE.Platform%3DDesktop">on Windows</a>, right-click and choose 'Save Link As'; <a href="https://support.apple.com/en-gb/guide/safari/sfri40598/mac">on Mac</a> Control-click and choose 'Download Linked File').
 
-<br/><br/><b>1b</b> To see how happiness is actually calculated by the model, go to the Code tab and find the <i>answer</i> procedure (all the code between 'to answer' and 'end').
+<br/><br/><b>1b</b> Open the model you have just downloaded. You can do this in one of two ways:
+<ul><li>if you have NetLogo installed on your computer (as on King's College computers) open NetLogo then go to File -> Open and find the <i>HappyUnhappy_v6.nlogo</i> file on your computer (likely in the downloads folder)</li>
+    <li>if you do not have NetLogo installed on your computer (likely, if you are on your own computer and have never used NetLogo before), go to <a href="https://netlogoweb.org/">NetLogo Web</a>, click the <i>Browse</i> button in top right to Upload a Model, and find the <i>HappyUnhappy_v6.nlogo</i> file on your computer (likely in the downloads folder)</li>
+</ul>
+
+<br/><br/><b>1c</b>
+Work your way through the Model Info tab:
+<ul><li>In the NetLogo program the Info tab is at the top.</li>
+     <li>In NetLogo Web the Model Info tab is at the bottom.
+</ul>
+Make sure you understand how 'happiness' is defined, by reading the contents of the Model Info tab fully and experimenting the model (in the Interface tab in the NetLogo program).
+
+<br/><br/><b>1d</b> To see how happiness is actually calculated by the model, go to the Code tab and find the <i>answer</i> procedure (all the code between 'to answer' and 'end').
 </p>
 <br/>
-<center><img src="HappySS.jpg" /></center>
+<center><img src="HappyUnhappy_SS.png" /></center>
 
 <p>
-<br/><b>Step 2: </b>Now that we understand how happiness is defined in this model, let's consider how we might make the model dynamic by allowing households to move location if they are 'unhappy'. Households move until they find a location where they are 'happy'. If all households can find a location at which they are happy, the simulation stops and we can assess segregation. 
+<br/><b>Step 2: </b>Now that we understand how happiness is defined in this model, let's consider how we might make the model dynamic by allowing households to move location if they are 'unhappy'. Households move until they find a location where they are 'happy'. If all households can find a location at which they are happy, the simulation stops and we can assess segregation.
 
-<br/><br/><b>2a</b> Download <a href="Segregation_shapes_v6.nlogo">this model code</a>, open in NetLogo, and read the 'What is it?' and 'How to use it' sections in the Info tab.
+<br/><br/><b>2a</b> Download <a href="Segregation_shapes_v6.nlogo">this model code</a> and open in NetLogo or NetLogo Web (as in Steps 1a and 1b)
 
-<br/><br/><b>2b</b> Open the Code tab. You will see that we have more code in this model than the first. Look at how the <i>setup</i> procedure is similar (but slightly different) to the <i>setup</i> procedure in the first model. 
+ <br/><br/><b>2b</b>Read the 'What is it?' and 'How to use it' sections in the Info tab (as in Step 1c above).
+
+<br/><br/><b>2c</b> Open the Code tab. You will see that we have more code in this model than the first. Look at how the <i>setup</i> procedure is similar (but slightly different) to the <i>setup</i> procedure in the first model.
 </p>
 <br/>
-<center><img src="SchellingSS.jpg" /></center>
+<center><img src="segregation_ss.png" /></center>
 <p>
-<br/><br/><b>2c</b> Go back to the Interface tab. Note how the 'Go' button has two arrows pointing to one another in the bottom left. This means all code in the procedure called by the button will be continuously repeated until the code tells it to stop. The 'Go' button calls the <i>go</i> procedure, which is the dynamic part of the model code - find the go procedure in the code.  
+<br/><br/><b>2d</b> Go back to the Interface tab. Note how the 'Go' button has two arrows pointing to one another in the bottom left while the 'Go Once' does not. The arrows mean that all code in the procedure called by the button will be continuously repeated until the code tells it to stop. The 'Go' and 'Go Once' buttons call the <i>go</i> procedure, which is the dynamic part of the model code - find the go procedure in the code. The difference is that the 'Go Once' button ask the computer to execute the go procedure once, while the 'Go' button repeatedly asks.
 
-<br/><br/><b>2d</b> The <i>go</i> procedure calls the <i>update-happiness</i> procedure - note how this is similar to the <i>answer</i> procedure in the first model. 
+<br/><br/><b>2e</b> The <i>go</i> procedure calls the <i>update-happiness</i> procedure - note how this is similar to the <i>answer</i> procedure in the first model.
 
-<br/><br/><b>2e</b> Next in the <i>go</i> procedure, there's a check to see if all turtles are happy - if so, the model stops, otherwise the <i>move-unhappy-turtles</i> procedure is called. Find the <i>move-unhappy-turtles</i> procedure and check you understand what it does. 
+<br/><br/><b>2f</b> Next in the <i>go</i> procedure, there's a check to see if all turtles are happy - if so, the model stops, otherwise the <i>move-unhappy-turtles</i> procedure is called. Find the <i>move-unhappy-turtles</i> procedure and check you understand what it does.
 
-<br/><br/><b>2f</b> After the <i>move-unhappy-turtles</i> procedure, the timestep is increased by 1 and then the <i>go</i> procedure starts all over again from the <i>update-happiness</i> procedure. Each time the <i>go</i> procedure is repeated is known as an iteration
+<br/><br/><b>2g</b> After the <i>move-unhappy-turtles</i> procedure, the timestep is increased by 1 (not relevant for the model, but needed to ensure the plots are produced properly). Each time the <i>go</i> procedure is repeated is known as an iteration
 </p>
 
 <p>
-<br/><b>Step 3:</b> 
-Experiment with the model. Work through the instructions in the 'Things to Try' section of the Info tab. Record your results  in an Excel spreadsheet. Setup your results table as shown in the image below - your results will be typed into the shaded (green) cells.  
+<br/><b>Step 3:</b>
+Experiment with the model. Work through the instructions in the 'Things to Try' section of the Info tab. Record your results  in an Excel spreadsheet. Setup your results table as shown in the image below - your results will be typed into the shaded (green) cells.
 </p>
 
 <br/>
@@ -57,7 +71,7 @@ Experiment with the model. Work through the instructions in the 'Things to Try' 
 <p>
 <br/><b>Questions:</b>
 <ol>
-<li>For 2000 households but different values for %-SIMILAR-WANTED, how does the overall degree of segregation change? 
+<li>For 2000 households but different values for %-SIMILAR-WANTED, how does the overall degree of segregation change?
 </li><li>If each household wants at least 10% same-shape neighbors, what percentage (on average) do they end up with? What does this imply about drivers of segregation?
 </li><li>For different values of %-SIMILAR-WANTED, how many iterations does it take before everyone is happy?
 </li><li>Does the number of households in the space influence the patterns you found above? (e.g. repeat the experiment above of different %-SIMILAR-WANTED values but for a different number of households)
@@ -67,7 +81,7 @@ Experiment with the model. Work through the instructions in the 'Things to Try' 
 <p>
 <b>Online Resources</b>
 <ul>
-<li>NetLogo Home: <a href="http://ccl.northwestern.edu/netlogo/" target="_blank">http://ccl.northwestern.edu/netlogo/</a> 
+<li>NetLogo Home: <a href="http://ccl.northwestern.edu/netlogo/" target="_blank">http://ccl.northwestern.edu/netlogo/</a>
 </li><li>NetLogo Modelling Commons: <a href="http://modelingcommons.org" target="_blank">http://modelingcommons.org</a>
 </li></ul>
 </p>
@@ -80,7 +94,7 @@ Experiment with the model. Work through the instructions in the 'Things to Try' 
 </li></ul>
 <br/>
 </p>
-  
+
 
 <hr></hr>
 <center>This material is licenced by <a href="https://www.landscapemodelling.net" target="_blank">James D.A. Millington</a> under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</a> licence.</center>
